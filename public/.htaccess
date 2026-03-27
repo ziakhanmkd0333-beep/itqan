@@ -1,0 +1,9 @@
+RewriteEngine On
+
+# If the request is for an existing file or directory, serve it
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# Otherwise, redirect everything to index.js (Node.js entry point)
+RewriteRule ^(.*)$ / [L]
