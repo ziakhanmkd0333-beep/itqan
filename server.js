@@ -61,6 +61,8 @@ app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 
 // Static files
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+app.use(express.static(path.join(__dirname, 'frontend')));
+app.use('/public', express.static(path.join(__dirname, 'frontend', 'public')));
 
 // Attach io to requests for real-time functionality
 app.use((req, res, next) => {
@@ -86,9 +88,14 @@ app.get('/api/health', (req, res) => {
   });
 });
 
-// 404 handler
-app.use((req, res) => {
-  res.status(404).json({ message: 'Route not found' });
+// API 404 handler - only for API routes
+app.use('/api/*', (req, res) => {
+  res.status(404).json({ message: 'API route not found' });
+});
+
+// Serve frontend for all non-API routes (catch-all)
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'frontend', 'index.html'));
 });
 
 // Global error handler
