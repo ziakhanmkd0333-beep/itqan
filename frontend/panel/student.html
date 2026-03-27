@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Panel | Al-Itqan Institute</title>
+  
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --primary: #0f766e;
+      --primary-light: #14b8a6;
+      --primary-dark: #134e4a;
+      --bg-sidebar: #0f172a;
+      --bg-main: #f1f5f9;
+      --bg-card: #ffffff;
+      --text-primary: #1e293b;
+      --text-secondary: #64748b;
+      --success: #10b981;
+      --warning: #f59e0b;
+      --border: #e2e8f0;
+      --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1);
+    }
+    
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Inter', sans-serif; background: var(--bg-main); color: var(--text-primary); }
+    
+    .layout { display: flex; min-height: 100vh; }
+    
+    /* Sidebar */
+    .sidebar {
+      width: 260px;
+      background: var(--bg-sidebar);
+      color: white;
+      position: fixed;
+      height: 100vh;
+      overflow-y: auto;
+    }
+    
+    .sidebar-header {
+      padding: 1.5rem;
+      text-align: center;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    
+    .sidebar-header img { width: 50px; height: 50px; border-radius: 50%; margin-bottom: 0.75rem; }
+    .sidebar-header h3 { font-size: 1rem; }
+    
+    .nav-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.875rem 1.5rem;
+      color: rgba(255,255,255,0.7);
+      cursor: pointer;
+      border-left: 3px solid transparent;
+      transition: all 0.2s;
+    }
+    
+    .nav-item:hover, .nav-item.active {
+      background: rgba(255,255,255,0.05);
+      color: white;
+      border-left-color: var(--primary-light);
+    }
+    
+    .main-content { flex: 1; margin-left: 260px; }
+    
+    /* Header */
+    .header {
+      background: var(--bg-card);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+    
+    .user-menu { display: flex; align-items: center; gap: 0.75rem; cursor: pointer; }
+    .user-avatar { width: 36px; height: 36px; background: var(--primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; }
+    
+    /* Content */
+    .content { padding: 2rem; }
+    .page-header { margin-bottom: 2rem; }
+    .page-header h1 { font-size: 1.5rem; margin-bottom: 0.5rem; }
+    
+    /* Stats */
+    .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-bottom: 2rem; }
+    .stat-card {
+      background: var(--bg-card);
+      padding: 1.5rem;
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .stat-icon { width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; }
+    .stat-icon.blue { background: #dbeafe; }
+    .stat-icon.green { background: #d1fae5; }
+    .stat-icon.yellow { background: #fef3c7; }
+    .stat-info h3 { font-size: 1.5rem; margin-bottom: 0.25rem; }
+    .stat-info p { color: var(--text-secondary); font-size: 0.85rem; }
+    
+    /* Cards */
+    .card {
+      background: var(--bg-card);
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      margin-bottom: 1.5rem;
+    }
+    .card-header {
+      padding: 1.25rem 1.5rem;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .card-header h3 { font-size: 1.1rem; }
+    .card-body { padding: 1.5rem; }
+    
+    /* Course List */
+    .course-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .course-item:last-child { border-bottom: none; padding-bottom: 0; }
+    .course-image { width: 60px; height: 60px; border-radius: 8px; object-fit: cover; background: var(--bg-main); }
+    .course-info { flex: 1; }
+    .course-info h4 { font-size: 1rem; margin-bottom: 0.25rem; }
+    .course-info p { font-size: 0.85rem; color: var(--text-secondary); }
+    .course-progress { width: 120px; }
+    .progress-bar { height: 8px; background: var(--border); border-radius: 4px; overflow: hidden; }
+    .progress-fill { height: 100%; background: var(--primary); border-radius: 4px; }
+    .progress-text { font-size: 0.8rem; color: var(--text-secondary); margin-top: 0.25rem; text-align: right; }
+    
+    .btn {
+      padding: 0.625rem 1.25rem;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      font-size: 0.9rem;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .btn-primary { background: var(--primary); color: white; }
+    .btn-secondary { background: var(--bg-main); color: var(--text-secondary); }
+    .btn-sm { padding: 0.5rem 1rem; font-size: 0.85rem; }
+    
+    /* Schedule */
+    .schedule-list { list-style: none; }
+    .schedule-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem;
+      background: var(--bg-main);
+      border-radius: 8px;
+      margin-bottom: 0.75rem;
+    }
+    .schedule-time { 
+      width: 80px; 
+      text-align: center; 
+      font-weight: 600; 
+      color: var(--primary);
+      font-size: 0.9rem;
+    }
+    .schedule-info { flex: 1; }
+    .schedule-info h4 { font-size: 0.95rem; margin-bottom: 0.25rem; }
+    .schedule-info p { font-size: 0.8rem; color: var(--text-secondary); }
+    .schedule-status { 
+      padding: 4px 12px; 
+      border-radius: 50px; 
+      font-size: 0.75rem; 
+      font-weight: 500;
+    }
+    .schedule-status.upcoming { background: #dbeafe; color: #1e40af; }
+    .schedule-status.live { background: #fee2e2; color: #991b1b; }
+    .schedule-status.completed { background: #d1fae5; color: #065f46; }
+    
+    /* Certificates */
+    .certificate-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+    .certificate-card {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      color: white;
+      padding: 1.5rem;
+      border-radius: 12px;
+      position: relative;
+      overflow: hidden;
+    }
+    .certificate-card::before {
+      content: '🏆';
+      position: absolute;
+      right: 1rem;
+      top: 1rem;
+      font-size: 3rem;
+      opacity: 0.2;
+    }
+    .certificate-card h4 { font-size: 1rem; margin-bottom: 0.5rem; }
+    .certificate-card p { font-size: 0.8rem; opacity: 0.9; margin-bottom: 1rem; }
+    .certificate-card .btn { background: rgba(255,255,255,0.2); color: white; }
+    
+    @media (max-width: 768px) {
+      .sidebar { width: 100%; position: relative; height: auto; }
+      .main-content { margin-left: 0; }
+      .stats-grid { grid-template-columns: 1fr; }
+      .certificate-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <img src="../../logo.png" alt="Logo">
+        <h3>Student Panel</h3>
+      </div>
+      
+      <nav>
+        <div class="nav-item active" data-page="dashboard">
+          <span>📊</span> <span>Dashboard</span>
+        </div>
+        <div class="nav-item" data-page="courses">
+          <span>📚</span> <span>My Courses</span>
+        </div>
+        <div class="nav-item" data-page="schedule">
+          <span>📅</span> <span>Schedule</span>
+        </div>
+        <div class="nav-item" data-page="certificates">
+          <span>📜</span> <span>Certificates</span>
+        </div>
+        <div class="nav-item" data-page="profile">
+          <span>👤</span> <span>Profile</span>
+        </div>
+        <div class="nav-item" onclick="logout()">
+          <span>🚪</span> <span>Logout</span>
+        </div>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <header class="header">
+        <h2>Welcome back, <span id="studentName">Student</span>!</h2>
+        <div class="user-menu" onclick="showProfile()">
+          <div class="user-avatar">S</div>
+          <span id="headerName">Student</span>
+        </div>
+      </header>
+
+      <div class="content" id="dashboardPage">
+        <div class="page-header">
+          <h1>Dashboard</h1>
+          <p>Track your learning progress</p>
+        </div>
+        
+        <!-- Stats -->
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-icon blue">📚</div>
+            <div class="stat-info">
+              <h3 id="enrolledCount">0</h3>
+              <p>Enrolled Courses</p>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon green">✅</div>
+            <div class="stat-info">
+              <h3 id="completedCount">0</h3>
+              <p>Completed Lessons</p>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon yellow">📜</div>
+            <div class="stat-info">
+              <h3 id="certificatesCount">0</h3>
+              <p>Certificates Earned</p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- My Courses -->
+        <div class="card">
+          <div class="card-header">
+            <h3>My Courses</h3>
+            <a href="#" class="btn btn-secondary btn-sm" onclick="navigate('courses')">View All</a>
+          </div>
+          <div class="card-body" id="myCoursesList">
+            <p style="text-align: center; color: var(--text-secondary); padding: 2rem;">Loading courses...</p>
+          </div>
+        </div>
+        
+        <!-- Today's Schedule -->
+        <div class="card">
+          <div class="card-header">
+            <h3>Today's Schedule</h3>
+            <a href="#" class="btn btn-secondary btn-sm" onclick="navigate('schedule')">Full Schedule</a>
+          </div>
+          <div class="card-body">
+            <ul class="schedule-list" id="todaySchedule">
+              <li class="schedule-item">
+                <span class="schedule-time">10:00 AM</span>
+                <div class="schedule-info">
+                  <h4>Quran with Tajweed</h4>
+                  <p>Live Class with Ustadh Ahmad</p>
+                </div>
+                <span class="schedule-status upcoming">Upcoming</span>
+              </li>
+              <li class="schedule-item">
+                <span class="schedule-time">02:00 PM</span>
+                <div class="schedule-info">
+                  <h4>Arabic Grammar</h4>
+                  <p>Recorded Lesson - Module 3</p>
+                </div>
+                <span class="schedule-status completed">Completed</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Courses Page -->
+      <div class="content" id="coursesPage" style="display: none;">
+        <div class="page-header">
+          <h1>My Courses</h1>
+          <button class="btn btn-primary" onclick="window.location.href='../pages/courses.html'">Browse More Courses</button>
+        </div>
+        <div class="card">
+          <div class="card-body" id="allMyCourses">
+            <p style="text-align: center; color: var(--text-secondary); padding: 2rem;">Loading...</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Schedule Page -->
+      <div class="content" id="schedulePage" style="display: none;">
+        <div class="page-header">
+          <h1>My Schedule</h1>
+          <p>Your weekly class timetable</p>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <h3>This Week</h3>
+          </div>
+          <div class="card-body">
+            <ul class="schedule-list">
+              <li class="schedule-item">
+                <span class="schedule-time">Mon<br>10:00</span>
+                <div class="schedule-info">
+                  <h4>Quran with Tajweed</h4>
+                  <p>Live Class • 45 mins</p>
+                </div>
+                <span class="schedule-status upcoming">Upcoming</span>
+              </li>
+              <li class="schedule-item">
+                <span class="schedule-time">Wed<br>10:00</span>
+                <div class="schedule-info">
+                  <h4>Quran with Tajweed</h4>
+                  <p>Live Class • 45 mins</p>
+                </div>
+                <span class="schedule-status upcoming">Upcoming</span>
+              </li>
+              <li class="schedule-item">
+                <span class="schedule-time">Fri<br>02:00</span>
+                <div class="schedule-info">
+                  <h4>Arabic Grammar</h4>
+                  <p>Live Class • 60 mins</p>
+                </div>
+                <span class="schedule-status upcoming">Upcoming</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Certificates Page -->
+      <div class="content" id="certificatesPage" style="display: none;">
+        <div class="page-header">
+          <h1>My Certificates</h1>
+          <p>Your achievements and certifications</p>
+        </div>
+        <div class="certificate-grid">
+          <div class="certificate-card">
+            <h4>Noorani Qaida Completion</h4>
+            <p>Completed on Jan 15, 2024</p>
+            <button class="btn btn-sm">Download PDF</button>
+          </div>
+          <div class="certificate-card">
+            <h4>Nazra Quran Certificate</h4>
+            <p>Completed on Mar 20, 2024</p>
+            <button class="btn btn-sm">Download PDF</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Profile Page -->
+      <div class="content" id="profilePage" style="display: none;">
+        <div class="page-header">
+          <h1>My Profile</h1>
+        </div>
+        <div class="card">
+          <div class="card-body">
+            <form id="profileForm">
+              <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin-bottom: 1.5rem;">
+                <div>
+                  <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Full Name</label>
+                  <input type="text" name="name" class="form-input" style="width: 100%; padding: 0.75rem; border: 1px solid var(--border); border-radius: 8px;">
+                </div>
+                <div>
+                  <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Email</label>
+                  <input type="email" name="email" class="form-input" style="width: 100%; padding: 0.75rem; border: 1px solid var(--border); border-radius: 8px;">
+                </div>
+                <div>
+                  <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Phone</label>
+                  <input type="tel" name="phone" class="form-input" style="width: 100%; padding: 0.75rem; border: 1px solid var(--border); border-radius: 8px;">
+                </div>
+                <div>
+                  <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Preferred Language</label>
+                  <select name="language" class="form-input" style="width: 100%; padding: 0.75rem; border: 1px solid var(--border); border-radius: 8px;">
+                    <option value="English">English</option>
+                    <option value="Urdu">Urdu</option>
+                    <option value="Arabic">Arabic</option>
+                  </select>
+                </div>
+              </div>
+              <button type="submit" class="btn btn-primary">Save Changes</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="../js/main.js"></script>
+  <script>
+    // Check auth
+    if (!app.token || app.user?.role !== 'STUDENT') {
+      window.location.href = '../index.html';
+    }
+
+    // Set user info
+    document.getElementById('studentName').textContent = app.user?.name || 'Student';
+    document.getElementById('headerName').textContent = app.user?.name || 'Student';
+
+    // Navigation
+    function navigate(page) {
+      document.querySelectorAll('.content').forEach(c => c.style.display = 'none');
+      document.getElementById(page + 'Page').style.display = 'block';
+      
+      document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
+      document.querySelector(`[data-page="${page}"]`)?.classList.add('active');
+      
+      if (page === 'courses') loadMyCourses();
+    }
+
+    document.querySelectorAll('.nav-item[data-page]').forEach(item => {
+      item.addEventListener('click', () => navigate(item.dataset.page));
+    });
+
+    // Load my courses
+    async function loadMyCourses() {
+      try {
+        // This would fetch from API
+        const courses = [
+          { id: 1, title: 'Quran with Tajweed', progress: 65, totalLessons: 40, completedLessons: 26, image: '' },
+          { id: 2, title: 'Arabic Grammar (Sarf & Nahw)', progress: 30, totalLessons: 60, completedLessons: 18, image: '' }
+        ];
+        
+        renderCourses(courses);
+      } catch (error) {
+        console.error('Error loading courses:', error);
+      }
+    }
+
+    function renderCourses(courses) {
+      const html = courses.map(c => `
+        <div class="course-item">
+          <div class="course-image"></div>
+          <div class="course-info">
+            <h4>${c.title}</h4>
+            <p>${c.completedLessons} of ${c.totalLessons} lessons completed</p>
+          </div>
+          <div class="course-progress">
+            <div class="progress-bar">
+              <div class="progress-fill" style="width: ${c.progress}%"></div>
+            </div>
+            <div class="progress-text">${c.progress}%</div>
+          </div>
+          <button class="btn btn-primary btn-sm">Continue</button>
+        </div>
+      `).join('');
+      
+      document.getElementById('myCoursesList').innerHTML = html || '<p style="text-align: center; color: var(--text-secondary); padding: 2rem;">No enrolled courses yet. <a href="../pages/courses.html">Browse courses</a></p>';
+      document.getElementById('allMyCourses').innerHTML = html || '<p style="text-align: center; color: var(--text-secondary); padding: 2rem;">No enrolled courses yet.</p>';
+      
+      document.getElementById('enrolledCount').textContent = courses.length;
+      const completedLessons = courses.reduce((sum, c) => sum + c.completedLessons, 0);
+      document.getElementById('completedCount').textContent = completedLessons;
+    }
+
+    function logout() {
+      app.logout();
+      window.location.href = '../index.html';
+    }
+
+    // Initialize
+    loadMyCourses();
+  </script>
+</body>
+</html>

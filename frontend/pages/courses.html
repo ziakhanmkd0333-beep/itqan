@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- SEO -->
+  <title>Courses | Al-Itqan Institute</title>
+  <meta name="description" content="Explore 24+ Islamic courses at Al-Itqan Institute - Quran, Arabic, Fiqh, Hadith, and more. Learn from qualified scholars with flexible online classes.">
+  <link rel="canonical" href="https://itqaninstitute.com/courses">
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="Courses | Al-Itqan Institute">
+  <meta property="og:description" content="Explore 24+ Islamic courses at Al-Itqan Institute - Quran, Arabic, Fiqh, Hadith, and more.">
+  <meta property="og:image" content="https://i.ibb.co/V0pRN6XT/logo.png">
+  
+  <!-- Favicons -->
+  <link rel="icon" href="https://uksptkeroneiqfcqzsgh.supabase.co/storage/v1/object/public/assets/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://uksptkeroneiqfcqzsgh.supabase.co/storage/v1/object/public/assets/favicon-32x32.png">
+  
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Styles -->
+  <link rel="stylesheet" href="../css/styles.css">
+  
+  <style>
+    /* Courses Page Styles */
+    .hero-small {
+      position: relative;
+      min-height: 50vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding-top: var(--header-height);
+      background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.7)), url('../images/courses.png');
+      background-size: cover;
+      background-position: center;
+    }
+    
+    .hero-small-content {
+      text-align: center;
+      color: white;
+      padding: 2rem;
+    }
+    
+    .hero-small h1 {
+      font-size: 3rem;
+      color: white;
+      margin-bottom: 1rem;
+    }
+    
+    .hero-small p {
+      font-size: 1.1rem;
+      opacity: 0.9;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    
+    /* Filters Section */
+    .filters-section {
+      background: var(--bg-secondary);
+      padding: 2rem 0;
+      border-bottom: 1px solid var(--border-color);
+    }
+    
+    .filters-container {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    
+    .search-box {
+      flex: 1;
+      min-width: 250px;
+      position: relative;
+    }
+    
+    .search-box input {
+      width: 100%;
+      padding: 12px 16px 12px 48px;
+      border: 2px solid var(--border-color);
+      border-radius: var(--btn-radius);
+      font-size: 1rem;
+      background: var(--bg-card);
+      transition: all var(--transition-fast);
+    }
+    
+    .search-box input:focus {
+      outline: none;
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 3px rgba(15, 118, 110, 0.1);
+    }
+    
+    .search-box .search-icon {
+      position: absolute;
+      left: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-tertiary);
+      font-size: 1.2rem;
+    }
+    
+    .filter-select {
+      padding: 12px 40px 12px 16px;
+      border: 2px solid var(--border-color);
+      border-radius: var(--btn-radius);
+      font-size: 0.95rem;
+      background: var(--bg-card);
+      cursor: pointer;
+      min-width: 160px;
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%2364748b' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 16px center;
+    }
+    
+    .filter-select:focus {
+      outline: none;
+      border-color: var(--primary-color);
+    }
+    
+    .courses-count {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      margin-bottom: 1.5rem;
+    }
+    
+    .courses-count strong {
+      color: var(--primary-color);
+    }
+    
+    /* Courses Grid */
+    .courses-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 2rem;
+    }
+    
+    .course-card {
+      background: var(--bg-card);
+      border-radius: var(--card-radius);
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+      transition: all var(--transition-base);
+      border: 1px solid var(--border-light);
+    }
+    
+    .course-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-xl);
+    }
+    
+    .course-image {
+      position: relative;
+      height: 200px;
+      overflow: hidden;
+    }
+    
+    .course-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform var(--transition-slow);
+    }
+    
+    .course-card:hover .course-image img {
+      transform: scale(1.1);
+    }
+    
+    .course-badges {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    
+    .badge {
+      padding: 6px 12px;
+      border-radius: 50px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+    
+    .badge-level {
+      background: var(--primary-gradient);
+      color: white;
+    }
+    
+    .badge-category {
+      background: rgba(255,255,255,0.9);
+      color: var(--primary-dark);
+    }
+    
+    .course-content {
+      padding: 1.5rem;
+    }
+    
+    .course-title {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+      color: var(--text-primary);
+    }
+    
+    .course-description {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: 1rem;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      line-clamp: 2;
+      -webkit-box-orient: vertical;
+      box-orient: vertical;
+      overflow: hidden;
+    }
+    
+    .course-meta {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1rem;
+      font-size: 0.85rem;
+      color: var(--text-tertiary);
+    }
+    
+    .course-meta span {
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+    
+    .course-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border-light);
+    }
+    
+    .course-price {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--primary-color);
+    }
+    
+    .course-price span {
+      font-size: 0.85rem;
+      font-weight: 400;
+      color: var(--text-tertiary);
+    }
+    
+    /* Empty State */
+    .empty-state {
+      text-align: center;
+      padding: 4rem 2rem;
+      grid-column: 1 / -1;
+    }
+    
+    .empty-state-icon {
+      font-size: 4rem;
+      margin-bottom: 1rem;
+    }
+    
+    .empty-state h3 {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+    
+    .empty-state p {
+      color: var(--text-secondary);
+    }
+    
+    /* Features Section */
+    .why-study-section {
+      background: var(--bg-secondary);
+    }
+    
+    .features-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+    
+    .feature-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      padding: 1.5rem;
+      background: var(--bg-card);
+      border-radius: var(--card-radius);
+      border: 1px solid var(--border-light);
+    }
+    
+    .feature-item-icon {
+      width: 50px;
+      height: 50px;
+      background: var(--primary-gradient);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      flex-shrink: 0;
+    }
+    
+    .feature-item h4 {
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+    }
+    
+    .feature-item p {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="container">
+      <a href="../index.html" class="navbar-brand">
+        <img src="../../logo.png" alt="Al-Itqan Logo" class="logo">
+        <div class="brand-text">
+          <span class="arabic">معهد الإتقان</span>
+          <span class="english">Al-Itqan Institute</span>
+        </div>
+      </a>
+      
+      <button class="menu-toggle" aria-label="Toggle Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      
+      <ul class="navbar-nav">
+        <li><a href="../index.html" class="nav-link" data-i18n="home">Home</a></li>
+        <li><a href="courses.html" class="nav-link active" data-i18n="courses">Courses</a></li>
+        <li><a href="blogs.html" class="nav-link" data-i18n="blogs">Blogs</a></li>
+        <li><a href="admission.html" class="nav-link" data-i18n="admission">Admission</a></li>
+        <li><a href="about.html" class="nav-link" data-i18n="aboutUs">About Us</a></li>
+        <li><a href="contact.html" class="nav-link" data-i18n="contactUs">Contact Us</a></li>
+      </ul>
+      
+      <div class="navbar-actions">
+        <div class="lang-switcher">
+          <button class="switcher-btn">
+            <span class="flag">🇬🇧</span>
+            <span>English</span>
+            <i class="chevron">▼</i>
+          </button>
+          <div class="switcher-dropdown">
+            <div class="dropdown-item active" data-lang="en">
+              <span class="flag">🇬🇧</span>
+              <span>English</span>
+            </div>
+            <div class="dropdown-item" data-lang="ar">
+              <span class="flag">🇸🇦</span>
+              <span>العربية</span>
+            </div>
+            <div class="dropdown-item" data-lang="ur">
+              <span class="flag">🇵🇰</span>
+              <span>اردو</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="theme-switcher">
+          <button class="switcher-btn">
+            <span>🌿</span>
+            <span>Green</span>
+            <i class="chevron">▼</i>
+          </button>
+          <div class="switcher-dropdown">
+            <div class="dropdown-item" data-theme="light"><span>☀️</span> Light</div>
+            <div class="dropdown-item" data-theme="dark"><span>🌙</span> Dark</div>
+            <div class="dropdown-item active" data-theme="islamic-green"><span>🌿</span> Islamic Green</div>
+          </div>
+        </div>
+        
+        <div class="auth-buttons">
+          <button class="btn btn-secondary btn-sm" onclick="app.showModal('loginModal')" data-i18n="login">Login</button>
+          <button class="btn btn-primary btn-sm" onclick="app.showModal('registerModal')" data-i18n="signup">Signup</button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero-small">
+    <div class="hero-small-content">
+      <h1 data-i18n="ourCourses">Our Courses</h1>
+      <p data-i18n="coursesSubtitle">Explore a complete and structured journey of Islamic and Arabic education</p>
+    </div>
+  </section>
+
+  <!-- Filters Section -->
+  <section class="filters-section">
+    <div class="container">
+      <div class="filters-container">
+        <div class="search-box">
+          <span class="search-icon">🔍</span>
+          <input type="text" id="searchInput" placeholder="Search courses...">
+        </div>
+        
+        <select class="filter-select" id="levelFilter">
+          <option value="">All Levels</option>
+          <option value="Beginner">Beginner</option>
+          <option value="Intermediate">Intermediate</option>
+          <option value="Advanced">Advanced</option>
+          <option value="Specialized">Specialized</option>
+        </select>
+        
+        <select class="filter-select" id="categoryFilter">
+          <option value="">All Categories</option>
+          <option value="Quran">Quran</option>
+          <option value="Arabic Language">Arabic Language</option>
+          <option value="Fiqh">Fiqh</option>
+          <option value="Sarf & Nahw">Sarf & Nahw</option>
+          <option value="Hadith">Hadith</option>
+        </select>
+        
+        <select class="filter-select" id="sortFilter">
+          <option value="newest">Newest First</option>
+          <option value="price-low">Price: Low to High</option>
+          <option value="price-high">Price: High to Low</option>
+        </select>
+      </div>
+    </div>
+  </section>
+
+  <!-- Courses Section -->
+  <section class="section">
+    <div class="container">
+      <p class="courses-count">Showing <strong id="courseCount">0</strong> courses</p>
+      
+      <div class="courses-grid" id="coursesGrid">
+        <!-- Skeleton Loading -->
+        <div class="skeleton" style="height: 380px;"></div>
+        <div class="skeleton" style="height: 380px;"></div>
+        <div class="skeleton" style="height: 380px;"></div>
+        <div class="skeleton" style="height: 380px;"></div>
+        <div class="skeleton" style="height: 380px;"></div>
+        <div class="skeleton" style="height: 380px;"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Study With Us -->
+  <section class="section why-study-section">
+    <div class="container">
+      <h2 class="section-title">Why Study With Us</h2>
+      <p class="section-subtitle">Experience the Al-Itqan difference in Islamic education</p>
+      
+      <div class="features-list">
+        <div class="feature-item">
+          <div class="feature-item-icon">⏰</div>
+          <div>
+            <h4>Flexible Timings</h4>
+            <p>Choose schedules that fit your lifestyle - morning to night sessions available.</p>
+          </div>
+        </div>
+        
+        <div class="feature-item">
+          <div class="feature-item-icon">👨‍🏫</div>
+          <div>
+            <h4>Certified Scholars</h4>
+            <p>Learn from qualified male & female scholars with authentic Ijazah chains.</p>
+          </div>
+        </div>
+        
+        <div class="feature-item">
+          <div class="feature-item-icon">📹</div>
+          <div>
+            <h4>Recorded Lessons</h4>
+            <p>Access all lessons anytime for review and reinforcement.</p>
+          </div>
+        </div>
+        
+        <div class="feature-item">
+          <div class="feature-item-icon">💻</div>
+          <div>
+            <h4>Live 1-on-1 & Group Classes</h4>
+            <p>Interactive sessions with real-time teacher engagement.</p>
+          </div>
+        </div>
+        
+        <div class="feature-item">
+          <div class="feature-item-icon">🤝</div>
+          <div>
+            <h4>Advanced Group Discussions</h4>
+            <p>Deepen understanding through collaborative learning sessions.</p>
+          </div>
+        </div>
+        
+        <div class="feature-item">
+          <div class="feature-item-icon">📜</div>
+          <div>
+            <h4>Certificates on Completion</h4>
+            <p>Earn recognized certificates for your achievements.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <img src="../../logo.png" alt="Al-Itqan Logo" class="logo">
+          <p>Al-Itqan Institute for Islamic & Arabic Studies - Providing authentic Islamic education from qualified scholars.</p>
+        </div>
+        
+        <div class="footer-links">
+          <h4 class="footer-title">Quick Links</h4>
+          <ul>
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="courses.html">Courses</a></li>
+            <li><a href="blogs.html">Blogs</a></li>
+            <li><a href="admission.html">Admission</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-contact">
+          <h4 class="footer-title">Contact</h4>
+          <p><span class="icon">📱</span> <a href="https://wa.me/923434487450">+92 343 4487450</a></p>
+          <p><span class="icon">✉️</span> <a href="mailto:info@itqaninstitute.com">info@itqaninstitute.com</a></p>
+          <p><span class="icon">🌐</span> 24/7 Support Available</p>
+        </div>
+        
+        <div class="footer-social-section">
+          <h4 class="footer-title">Follow Us</h4>
+          <div class="footer-social">
+            <a href="#"><span>📘</span></a>
+            <a href="#"><span>🐦</span></a>
+            <a href="#"><span>📸</span></a>
+            <a href="#"><span>📺</span></a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p class="footer-copyright">&copy; 2025 Al-Itqan Institute. All rights reserved.</p>
+        <div class="footer-social">
+          <a href="https://wa.me/923434487450" target="_blank"><span>💬</span></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Login Modal -->
+  <div class="modal-overlay" id="loginModal">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 class="modal-title">Welcome Back</h3>
+        <button class="modal-close">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form id="loginForm">
+          <div class="form-group">
+            <label class="form-label">Email Address</label>
+            <input type="email" name="email" class="form-input" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Password</label>
+            <input type="password" name="password" class="form-input" required>
+          </div>
+          <button type="submit" class="btn btn-primary" style="width: 100%;">Login</button>
+        </form>
+      </div>
+      <div class="modal-footer" style="justify-content: center;">
+        <p>Don't have an account? <a href="#" onclick="app.hideModal('loginModal'); app.showModal('registerModal');">Sign up</a></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Register Modal -->
+  <div class="modal-overlay" id="registerModal">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 class="modal-title">Create Account</h3>
+        <button class="modal-close">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form id="registerForm">
+          <div class="form-group">
+            <label class="form-label">Full Name</label>
+            <input type="text" name="name" class="form-input" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Email</label>
+            <input type="email" name="email" class="form-input" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Password</label>
+            <input type="password" name="password" class="form-input" required>
+          </div>
+          <button type="submit" class="btn btn-primary" style="width: 100%;">Sign Up</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="../js/main.js"></script>
+  <script>
+    let allCourses = [];
+    let filteredCourses = [];
+    
+    async function loadAllCourses() {
+      try {
+        const response = await fetch(`${CONFIG.API_BASE_URL}/courses`);
+        const data = await response.json();
+        
+        if (data.success) {
+          allCourses = data.data;
+          filteredCourses = allCourses;
+          renderCourses();
+        }
+      } catch (error) {
+        console.error('Error loading courses:', error);
+        document.getElementById('coursesGrid').innerHTML = `
+          <div class="empty-state">
+            <div class="empty-state-icon">⚠️</div>
+            <h3>Failed to load courses</h3>
+            <p>Please try again later</p>
+          </div>
+        `;
+      }
+    }
+    
+    function renderCourses() {
+      const grid = document.getElementById('coursesGrid');
+      document.getElementById('courseCount').textContent = filteredCourses.length;
+      
+      if (filteredCourses.length === 0) {
+        grid.innerHTML = `
+          <div class="empty-state">
+            <div class="empty-state-icon">📚</div>
+            <h3>No courses found</h3>
+            <p>Try adjusting your filters</p>
+          </div>
+        `;
+        return;
+      }
+      
+      grid.innerHTML = filteredCourses.map(course => `
+        <div class="course-card">
+          <div class="course-image">
+            <img src="${course.image || '../../images/quran_study_scene_1769312205837.png'}" alt="${course.title}">
+            <div class="course-badges">
+              <span class="badge badge-level">${course.level}</span>
+              <span class="badge badge-category">${course.category}</span>
+            </div>
+          </div>
+          <div class="course-content">
+            <h3 class="course-title">${course.title}</h3>
+            <p class="course-description">${course.description || 'Learn authentic Islamic knowledge with qualified scholars.'}</p>
+            <div class="course-meta">
+              <span>⏱️ ${course.duration || 'N/A'}</span>
+              <span>👥 ${course.students_count || 0}</span>
+            </div>
+            <div class="course-footer">
+              <span class="course-price">$${course.fee || 30}<span>/mo</span></span>
+              <a href="admission.html?course=${course.id}" class="btn btn-primary btn-sm">Enroll</a>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+    
+    function filterCourses() {
+      const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+      const levelFilter = document.getElementById('levelFilter').value;
+      const categoryFilter = document.getElementById('categoryFilter').value;
+      
+      filteredCourses = allCourses.filter(course => {
+        const matchesSearch = course.title.toLowerCase().includes(searchTerm) ||
+                             (course.description && course.description.toLowerCase().includes(searchTerm));
+        const matchesLevel = !levelFilter || course.level === levelFilter;
+        const matchesCategory = !categoryFilter || course.category === categoryFilter;
+        
+        return matchesSearch && matchesLevel && matchesCategory;
+      });
+      
+      // Sort
+      const sortValue = document.getElementById('sortFilter').value;
+      if (sortValue === 'price-low') {
+        filteredCourses.sort((a, b) => (a.fee || 30) - (b.fee || 30));
+      } else if (sortValue === 'price-high') {
+        filteredCourses.sort((a, b) => (b.fee || 30) - (a.fee || 30));
+      }
+      
+      renderCourses();
+    }
+    
+    // Event listeners
+    document.getElementById('searchInput')?.addEventListener('input', filterCourses);
+    document.getElementById('levelFilter')?.addEventListener('change', filterCourses);
+    document.getElementById('categoryFilter')?.addEventListener('change', filterCourses);
+    document.getElementById('sortFilter')?.addEventListener('change', filterCourses);
+    
+    document.getElementById('loginForm')?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const formData = new FormData(e.target);
+      await app.login(formData.get('email'), formData.get('password'));
+    });
+    
+    document.getElementById('registerForm')?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const formData = new FormData(e.target);
+      const success = await app.register({
+        name: formData.get('name'),
+        email: formData.get('email'),
+        password: formData.get('password')
+      });
+      if (success) {
+        app.hideModal('registerModal');
+        app.showModal('loginModal');
+      }
+    });
+    
+    // Initialize
+    loadAllCourses();
+  </script>
+</body>
+</html>

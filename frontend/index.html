@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- SEO Meta Tags -->
+  <title>Al-Itqan Institute | Islamic & Arabic Studies</title>
+  <meta name="description" content="Al-Itqan Institute for Islamic & Arabic Studies is a premier online academy offering a structured learning path from foundational Qur'an recitation to advanced studies in Arabic, Fiqh, and Hadith sciences.">
+  <link rel="canonical" href="https://itqaninstitute.com">
+  
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://itqaninstitute.com">
+  <meta property="og:title" content="Al-Itqan Institute | Islamic & Arabic Studies">
+  <meta property="og:description" content="Al-Itqan Institute for Islamic & Arabic Studies is a premier online academy offering a structured learning path from foundational Qur'an recitation to advanced studies in Arabic, Fiqh, and Hadith sciences.">
+  <meta property="og:image" content="https://i.ibb.co/V0pRN6XT/logo.png">
+  
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://itqaninstitute.com">
+  <meta name="twitter:title" content="Al-Itqan Institute | Islamic & Arabic Studies">
+  <meta name="twitter:description" content="Al-Itqan Institute for Islamic & Arabic Studies is a premier online academy offering a structured learning path from foundational Qur'an recitation to advanced studies in Arabic, Fiqh, and Hadith sciences.">
+  <meta name="twitter:image" content="https://i.ibb.co/V0pRN6XT/logo.png">
+  
+  <!-- Favicons -->
+  <link rel="icon" href="https://uksptkeroneiqfcqzsgh.supabase.co/storage/v1/object/public/assets/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://uksptkeroneiqfcqzsgh.supabase.co/storage/v1/object/public/assets/favicon-32x32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="https://uksptkeroneiqfcqzsgh.supabase.co/storage/v1/object/public/assets/apple-touch-icon.png">
+  
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/styles.css">
+  
+  <style>
+    /* Home Page Specific Styles */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+    
+    .feature-card {
+      background: var(--bg-card);
+      border-radius: var(--card-radius);
+      padding: 2rem;
+      text-align: center;
+      border: 1px solid var(--border-light);
+      transition: all var(--transition-base);
+    }
+    
+    .feature-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-xl);
+      border-color: var(--primary-light);
+    }
+    
+    .feature-icon {
+      width: 70px;
+      height: 70px;
+      background: var(--primary-gradient);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.5rem;
+      font-size: 1.8rem;
+      color: white;
+    }
+    
+    .feature-card h3 {
+      font-size: 1.25rem;
+      margin-bottom: 0.75rem;
+    }
+    
+    .feature-card p {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+    }
+    
+    .courses-section {
+      background: var(--bg-secondary);
+    }
+    
+    .courses-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+    
+    .course-card .enroll-btn {
+      width: 100%;
+      margin-top: 1rem;
+    }
+    
+    .view-all-btn {
+      text-align: center;
+      margin-top: 3rem;
+    }
+    
+    /* Animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .animate-in {
+      animation: fadeInUp 0.6s ease forwards;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="container">
+      <a href="index.html" class="navbar-brand">
+        <img src="../logo.png" alt="Al-Itqan Logo" class="logo">
+        <div class="brand-text">
+          <span class="arabic">معهد الإتقان</span>
+          <span class="english">Al-Itqan Institute</span>
+        </div>
+      </a>
+      
+      <button class="menu-toggle" aria-label="Toggle Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      
+      <ul class="navbar-nav">
+        <li><a href="index.html" class="nav-link active" data-i18n="home">Home</a></li>
+        <li><a href="pages/courses.html" class="nav-link" data-i18n="courses">Courses</a></li>
+        <li><a href="pages/blogs.html" class="nav-link" data-i18n="blogs">Blogs</a></li>
+        <li><a href="pages/admission.html" class="nav-link" data-i18n="admission">Admission</a></li>
+        <li><a href="pages/about.html" class="nav-link" data-i18n="aboutUs">About Us</a></li>
+        <li><a href="pages/contact.html" class="nav-link" data-i18n="contactUs">Contact Us</a></li>
+      </ul>
+      
+      <div class="navbar-actions">
+        <!-- Language Switcher -->
+        <div class="lang-switcher">
+          <button class="switcher-btn">
+            <span class="flag">🇬🇧</span>
+            <span>English</span>
+            <i class="chevron">▼</i>
+          </button>
+          <div class="switcher-dropdown">
+            <div class="dropdown-item active" data-lang="en">
+              <span class="flag">🇬🇧</span>
+              <span>English</span>
+            </div>
+            <div class="dropdown-item" data-lang="ar">
+              <span class="flag">🇸🇦</span>
+              <span>العربية</span>
+            </div>
+            <div class="dropdown-item" data-lang="ur">
+              <span class="flag">🇵🇰</span>
+              <span>اردو</span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Theme Switcher -->
+        <div class="theme-switcher">
+          <button class="switcher-btn">
+            <span>🌿</span>
+            <span>Green</span>
+            <i class="chevron">▼</i>
+          </button>
+          <div class="switcher-dropdown">
+            <div class="dropdown-item" data-theme="light">
+              <span>☀️</span>
+              <span>Light</span>
+            </div>
+            <div class="dropdown-item" data-theme="dark">
+              <span>🌙</span>
+              <span>Dark</span>
+            </div>
+            <div class="dropdown-item active" data-theme="islamic-green">
+              <span>🌿</span>
+              <span>Islamic Green</span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Auth Buttons -->
+        <div class="auth-buttons">
+          <button class="btn btn-secondary btn-sm" onclick="app.showModal('loginModal')" data-i18n="login">Login</button>
+          <button class="btn btn-primary btn-sm" onclick="app.showModal('registerModal')" data-i18n="signup">Signup</button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <video class="hero-video-bg" autoplay muted loop playsinline>
+      <source src="../images/hero_section.mp4" type="video/mp4">
+    </video>
+    <div class="hero-overlay"></div>
+    
+    <div class="hero-content">
+      <!-- Notification Bar -->
+      <div class="notification-bar" onclick="app.showModal('notificationsModal')">
+        <span class="blink"></span>
+        <span data-i18n="newAdmissionsOpen">New Admissions Open!</span>
+      </div>
+      
+      <!-- Daily Cards -->
+      <div class="daily-cards">
+        <div class="daily-card">
+          <div class="icon">📖</div>
+          <h4 data-i18n="dailyHadith">Daily Hadith</h4>
+          <p id="dailyHadith">"The best among you are those who learn the Quran and teach it." - Sahih al-Bukhari</p>
+        </div>
+        <div class="daily-card">
+          <div class="icon">🌟</div>
+          <h4 data-i18n="dailyAyah">Daily Ayah</h4>
+          <p id="dailyAyah">"Indeed, with hardship comes ease." - Quran 94:6</p>
+        </div>
+      </div>
+      
+      <!-- Hero Title -->
+      <h1 class="hero-title">
+        <span class="arabic">معهد الإتقان للدراسات الإسلامية والعربية</span>
+        <span data-i18n="heroTitle">Al-Itqan Institute for Islamic & Arabic Studies</span>
+      </h1>
+      
+      <p class="hero-description" data-i18n="heroDescription">
+        A world-class Islamic education platform providing complete and structured Islamic knowledge from the foundational level to advanced scholarly specialization.
+      </p>
+      
+      <div class="hero-cta">
+        <a href="pages/courses.html" class="btn btn-primary" data-i18n="exploreCourses">Explore Courses</a>
+        <a href="pages/admission.html" class="btn btn-outline" data-i18n="applyNow">Apply Now</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Courses Section -->
+  <section class="section courses-section">
+    <div class="container">
+      <h2 class="section-title" data-i18n="ourCourses">Our Courses</h2>
+      <p class="section-subtitle" data-i18n="coursesSubtitle">Explore a complete and structured journey of Islamic and Arabic education</p>
+      
+      <div class="courses-grid" id="coursesGrid">
+        <!-- Courses will be loaded dynamically -->
+        <div class="skeleton" style="height: 350px;"></div>
+        <div class="skeleton" style="height: 350px;"></div>
+        <div class="skeleton" style="height: 350px;"></div>
+      </div>
+      
+      <div class="view-all-btn">
+        <a href="pages/courses.html" class="btn btn-outline" data-i18n="viewAll">View All Courses</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Choose Us Section -->
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title" data-i18n="whyChooseUs">Why Choose Us</h2>
+      <p class="section-subtitle">Experience authentic Islamic learning with qualified scholars</p>
+      
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">⏰</div>
+          <h3 data-i18n="flexibleTimings">Flexible Timings</h3>
+          <p>Choose class schedules that fit your lifestyle - morning, afternoon, evening, or night sessions available.</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">👨‍🏫</div>
+          <h3 data-i18n="certifiedScholars">Certified Scholars</h3>
+          <p>Learn from qualified male and female scholars with authentic chains of knowledge (Ijazah).</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">📹</div>
+          <h3 data-i18n="recordedLessons">Recorded Lessons</h3>
+          <p>Access all recorded lessons anytime to review and reinforce your learning at your own pace.</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">💻</div>
+          <h3 data-i18n="liveClasses">Live Classes</h3>
+          <p>Interactive one-to-one and group live sessions with real-time teacher interaction.</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">🤝</div>
+          <h3 data-i18n="groupDiscussions">Group Discussions</h3>
+          <p>Participate in advanced group discussions for deeper understanding and collaborative learning.</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">📜</div>
+          <h3 data-i18n="certificates">Certificates</h3>
+          <p>Earn recognized certificates upon successful course completion to validate your achievements.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <img src="../logo.png" alt="Al-Itqan Logo" class="logo">
+          <p>Al-Itqan Institute for Islamic & Arabic Studies - Providing authentic Islamic education from qualified scholars since 2020.</p>
+        </div>
+        
+        <div class="footer-links">
+          <h4 class="footer-title" data-i18n="quickLinks">Quick Links</h4>
+          <ul>
+            <li><a href="index.html" data-i18n="home">Home</a></li>
+            <li><a href="pages/courses.html" data-i18n="courses">Courses</a></li>
+            <li><a href="pages/blogs.html" data-i18n="blogs">Blogs</a></li>
+            <li><a href="pages/admission.html" data-i18n="admission">Admission</a></li>
+            <li><a href="pages/about.html" data-i18n="aboutUs">About Us</a></li>
+            <li><a href="pages/contact.html" data-i18n="contactUs">Contact Us</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-contact">
+          <h4 class="footer-title" data-i18n="contact">Contact</h4>
+          <p>
+            <span class="icon">📱</span>
+            <a href="https://wa.me/923434487450" target="_blank">+92 343 4487450</a>
+          </p>
+          <p>
+            <span class="icon">✉️</span>
+            <a href="mailto:info@itqaninstitute.com">info@itqaninstitute.com</a>
+          </p>
+          <p>
+            <span class="icon">🌐</span>
+            <span data-i18n="support">24/7 Support Available</span>
+          </p>
+        </div>
+        
+        <div class="footer-social-section">
+          <h4 class="footer-title" data-i18n="followUs">Follow Us</h4>
+          <div class="footer-social">
+            <a href="#" aria-label="Facebook"><span>📘</span></a>
+            <a href="#" aria-label="Twitter"><span>🐦</span></a>
+            <a href="#" aria-label="Instagram"><span>📸</span></a>
+            <a href="#" aria-label="YouTube"><span>📺</span></a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p class="footer-copyright">
+          &copy; 2025 Al-Itqan Institute. <span data-i18n="allRightsReserved">All rights reserved.</span>
+        </p>
+        <div class="footer-social">
+          <a href="https://wa.me/923434487450" target="_blank" aria-label="WhatsApp"><span>💬</span></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Login Modal -->
+  <div class="modal-overlay" id="loginModal">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 class="modal-title" data-i18n="welcomeBack">Welcome Back</h3>
+        <button class="modal-close">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form id="loginForm">
+          <div class="form-group">
+            <label class="form-label" data-i18n="email">Email Address</label>
+            <div class="input-group">
+              <span class="input-icon">✉️</span>
+              <input type="email" name="email" class="form-input" placeholder="Enter your email" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" data-i18n="password">Password</label>
+            <div class="input-group">
+              <span class="input-icon">🔒</span>
+              <input type="password" name="password" class="form-input" placeholder="Enter your password" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="checkbox-item">
+              <input type="checkbox" name="remember">
+              <span data-i18n="rememberMe">Remember me</span>
+            </label>
+          </div>
+          <button type="submit" class="btn btn-primary" style="width: 100%;" data-i18n="login">Login</button>
+        </form>
+      </div>
+      <div class="modal-footer" style="justify-content: center;">
+        <p>Don't have an account? <a href="#" onclick="app.hideModal('loginModal'); app.showModal('registerModal');">Sign up</a></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Register Modal -->
+  <div class="modal-overlay" id="registerModal">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 class="modal-title" data-i18n="createAccount">Create Account</h3>
+        <button class="modal-close">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form id="registerForm">
+          <div class="form-group">
+            <label class="form-label" data-i18n="fullName">Full Name</label>
+            <input type="text" name="name" class="form-input" placeholder="Enter your full name" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" data-i18n="email">Email Address</label>
+            <input type="email" name="email" class="form-input" placeholder="Enter your email" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" data-i18n="password">Password</label>
+            <input type="password" name="password" class="form-input" placeholder="Min 8 chars, 1 uppercase, 1 number" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" data-i18n="confirmPassword">Confirm Password</label>
+            <input type="password" name="confirmPassword" class="form-input" placeholder="Confirm your password" required>
+          </div>
+          <button type="submit" class="btn btn-primary" style="width: 100%;" data-i18n="signup">Sign Up</button>
+        </form>
+      </div>
+      <div class="modal-footer" style="justify-content: center;">
+        <p>Already have an account? <a href="#" onclick="app.hideModal('registerModal'); app.showModal('loginModal');">Login</a></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/main.js"></script>
+  <script>
+    // Load courses dynamically
+    async function loadCourses() {
+      try {
+        const response = await fetch(`${CONFIG.API_BASE_URL}/courses?limit=6`);
+        const data = await response.json();
+        
+        const coursesGrid = document.getElementById('coursesGrid');
+        
+        if (data.success && data.data.length > 0) {
+          coursesGrid.innerHTML = data.data.map(course => `
+            <div class="card course-card">
+              <div class="card-image">
+                <img src="${course.image || '../images/quran_study_scene_1769312205837.png'}" alt="${course.title}">
+                <span class="card-badge">${course.level}</span>
+              </div>
+              <div class="card-content">
+                <h3 class="card-title">${course.title}</h3>
+                <p class="card-description">${course.description?.substring(0, 100)}...</p>
+                <div class="card-meta">
+                  <span>⏱️ ${course.duration}</span>
+                  <span>👥 ${course.students_count || 0} Students</span>
+                </div>
+                <div class="card-footer">
+                  <span class="card-price">$${course.fee || 30}/mo</span>
+                </div>
+                <a href="pages/admission.html?course=${course.id}" class="btn btn-primary enroll-btn" data-i18n="enroll">Enroll</a>
+              </div>
+            </div>
+          `).join('');
+        } else {
+          coursesGrid.innerHTML = `
+            <div style="grid-column: 1/-1; text-align: center; padding: 3rem;">
+              <p style="color: var(--text-secondary);">No courses available at the moment.</p>
+            </div>
+          `;
+        }
+      } catch (error) {
+        console.error('Error loading courses:', error);
+        document.getElementById('coursesGrid').innerHTML = `
+          <div style="grid-column: 1/-1; text-align: center; padding: 3rem;">
+            <p style="color: var(--text-secondary);">Failed to load courses. Please try again later.</p>
+          </div>
+        `;
+      }
+    }
+    
+    // Load daily content
+    async function loadDailyContent() {
+      try {
+        const response = await fetch(`${CONFIG.API_BASE_URL}/notifications/daily`);
+        const data = await response.json();
+        
+        if (data.success) {
+          if (data.hadith) {
+            document.getElementById('dailyHadith').textContent = `"${data.hadith.content}"`;
+          }
+          if (data.ayah) {
+            document.getElementById('dailyAyah').textContent = `"${data.ayah.content}"`;
+          }
+        }
+      } catch (error) {
+        console.error('Error loading daily content:', error);
+      }
+    }
+    
+    // Handle login form
+    document.getElementById('loginForm')?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const formData = new FormData(e.target);
+      await app.login(formData.get('email'), formData.get('password'));
+    });
+    
+    // Handle register form
+    document.getElementById('registerForm')?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const formData = new FormData(e.target);
+      
+      const errors = Validation.validateForm(e.target);
+      if (errors.length > 0) {
+        app.showToast('error', errors[0].message);
+        return;
+      }
+      
+      const success = await app.register({
+        name: formData.get('name'),
+        email: formData.get('email'),
+        password: formData.get('password')
+      });
+      
+      if (success) {
+        app.hideModal('registerModal');
+        app.showModal('loginModal');
+      }
+    });
+    
+    // Initialize
+    document.addEventListener('DOMContentLoaded', () => {
+      loadCourses();
+      loadDailyContent();
+    });
+  </script>
+</body>
+</html>

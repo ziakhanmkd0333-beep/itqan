@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- SEO -->
+  <title>About Us | Al-Itqan Institute</title>
+  <meta name="description" content="Learn about Al-Itqan Institute and our distinguished scholar Dr. Noor Ur Rahman Hazarvi, PhD in Hadith Sciences from IIU Islamabad.">
+  <link rel="canonical" href="https://itqaninstitute.com/about">
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="About Us | Al-Itqan Institute">
+  <meta property="og:description" content="Meet our distinguished scholar Dr. Noor Ur Rahman Hazarvi and learn about our mission.">
+  <meta property="og:image" content="https://i.ibb.co/V0pRN6XT/logo.png">
+  
+  <!-- Favicons -->
+  <link rel="icon" href="https://uksptkeroneiqfcqzsgh.supabase.co/storage/v1/object/public/assets/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://uksptkeroneiqfcqzsgh.supabase.co/storage/v1/object/public/assets/favicon-32x32.png">
+  
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Styles -->
+  <link rel="stylesheet" href="../css/styles.css">
+  
+  <style>
+    /* About Page Styles */
+    .hero-small {
+      position: relative;
+      min-height: 50vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding-top: var(--header-height);
+      background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.7)), url('../../images/aboutus.png');
+      background-size: cover;
+      background-position: center;
+    }
+    
+    .hero-small-content {
+      text-align: center;
+      color: white;
+      padding: 2rem;
+    }
+    
+    .hero-small h1 {
+      font-size: 3rem;
+      color: white;
+      margin-bottom: 1rem;
+    }
+    
+    .hero-small p {
+      font-size: 1.1rem;
+      opacity: 0.9;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    
+    /* Scholar Profile Card */
+    .scholar-section {
+      background: var(--bg-secondary);
+      padding: 80px 0;
+    }
+    
+    .scholar-card {
+      background: var(--bg-card);
+      border-radius: var(--card-radius);
+      box-shadow: var(--shadow-xl);
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+    }
+    
+    .scholar-image {
+      position: relative;
+      background: var(--primary-gradient);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 500px;
+    }
+    
+    .scholar-image-content {
+      text-align: center;
+      color: white;
+      padding: 2rem;
+    }
+    
+    .scholar-avatar {
+      width: 200px;
+      height: 200px;
+      background: rgba(255,255,255,0.2);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 5rem;
+      margin: 0 auto 1.5rem;
+      border: 4px solid rgba(255,255,255,0.3);
+    }
+    
+    .scholar-name {
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+    
+    .scholar-title {
+      font-size: 1.1rem;
+      opacity: 0.9;
+    }
+    
+    .scholar-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--accent-gold);
+      color: white;
+      padding: 8px 16px;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-top: 1rem;
+    }
+    
+    .scholar-details {
+      padding: 3rem;
+    }
+    
+    .scholar-header {
+      margin-bottom: 2rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 2px solid var(--border-color);
+    }
+    
+    .scholar-header h2 {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+      color: var(--primary-color);
+    }
+    
+    .scholar-header p {
+      color: var(--text-secondary);
+      font-size: 1.1rem;
+    }
+    
+    /* Qualification List */
+    .qualification-list {
+      list-style: none;
+      margin-bottom: 2rem;
+    }
+    
+    .qualification-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--border-light);
+    }
+    
+    .qualification-list li:last-child {
+      border-bottom: none;
+    }
+    
+    .qualification-icon {
+      width: 40px;
+      height: 40px;
+      background: var(--accent-green-light);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--primary-color);
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+    
+    .qualification-content h4 {
+      font-size: 1.1rem;
+      margin-bottom: 0.25rem;
+    }
+    
+    .qualification-content p {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+    }
+    
+    /* Positions */
+    .positions-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    
+    .position-card {
+      background: var(--bg-secondary);
+      padding: 1.5rem;
+      border-radius: 12px;
+      text-align: center;
+      border: 1px solid var(--border-light);
+    }
+    
+    .position-card .icon {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+    
+    .position-card h4 {
+      font-size: 1rem;
+      margin-bottom: 0.5rem;
+    }
+    
+    .position-card p {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+    }
+    
+    /* Accordion */
+    .accordion {
+      margin-top: 2rem;
+    }
+    
+    .accordion-item {
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      margin-bottom: 1rem;
+      overflow: hidden;
+    }
+    
+    .accordion-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.25rem 1.5rem;
+      background: var(--bg-secondary);
+      cursor: pointer;
+      transition: all var(--transition-fast);
+    }
+    
+    .accordion-header:hover {
+      background: var(--border-light);
+    }
+    
+    .accordion-header h4 {
+      font-size: 1.1rem;
+      margin: 0;
+    }
+    
+    .accordion-icon {
+      font-size: 1.2rem;
+      transition: transform var(--transition-fast);
+    }
+    
+    .accordion-item.active .accordion-icon {
+      transform: rotate(180deg);
+    }
+    
+    .accordion-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height var(--transition-base);
+    }
+    
+    .accordion-item.active .accordion-content {
+      max-height: 1000px;
+    }
+    
+    .accordion-body {
+      padding: 1.5rem;
+    }
+    
+    .accordion-body p {
+      color: var(--text-secondary);
+      line-height: 1.8;
+      margin-bottom: 1rem;
+    }
+    
+    .expertise-list {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.75rem;
+    }
+    
+    .expertise-list li {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+    }
+    
+    .expertise-list li::before {
+      content: '✓';
+      color: var(--primary-color);
+      font-weight: bold;
+    }
+    
+    /* Mission/Vision Section */
+    .mission-section {
+      padding: 80px 0;
+    }
+    
+    .mission-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+    
+    .mission-card {
+      text-align: center;
+      padding: 2.5rem;
+      background: var(--bg-card);
+      border-radius: var(--card-radius);
+      box-shadow: var(--shadow-md);
+      border: 1px solid var(--border-light);
+      transition: all var(--transition-base);
+    }
+    
+    .mission-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-xl);
+    }
+    
+    .mission-icon {
+      width: 80px;
+      height: 80px;
+      background: var(--primary-gradient);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      color: white;
+      margin: 0 auto 1.5rem;
+    }
+    
+    .mission-card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+    
+    .mission-card p {
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+    
+    /* CTA Section */
+    .cta-section {
+      background: var(--primary-gradient);
+      padding: 80px 0;
+      text-align: center;
+      color: white;
+    }
+    
+    .cta-section h2 {
+      font-size: 2.5rem;
+      color: white;
+      margin-bottom: 1rem;
+    }
+    
+    .cta-section p {
+      font-size: 1.2rem;
+      opacity: 0.9;
+      max-width: 600px;
+      margin: 0 auto 2rem;
+    }
+    
+    .cta-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    
+    .cta-buttons .btn {
+      padding: 14px 32px;
+      font-size: 1rem;
+    }
+    
+    .cta-buttons .btn-primary {
+      background: white;
+      color: var(--primary-dark);
+    }
+    
+    .cta-buttons .btn-outline {
+      border-color: white;
+      color: white;
+    }
+    
+    .cta-buttons .btn-outline:hover {
+      background: white;
+      color: var(--primary-dark);
+    }
+    
+    /* Responsive */
+    @media (max-width: 992px) {
+      .scholar-card {
+        grid-template-columns: 1fr;
+      }
+      
+      .scholar-image {
+        min-height: 300px;
+      }
+      
+      .positions-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .mission-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .expertise-list {
+        grid-template-columns: 1fr;
+      }
+      
+      .scholar-details {
+        padding: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="container">
+      <a href="../index.html" class="navbar-brand">
+        <img src="../../logo.png" alt="Al-Itqan Logo" class="logo">
+        <div class="brand-text">
+          <span class="arabic">معهد الإتقان</span>
+          <span class="english">Al-Itqan Institute</span>
+        </div>
+      </a>
+      
+      <button class="menu-toggle" aria-label="Toggle Menu">
+        <span></span><span></span><span></span>
+      </button>
+      
+      <ul class="navbar-nav">
+        <li><a href="../index.html" class="nav-link">Home</a></li>
+        <li><a href="courses.html" class="nav-link">Courses</a></li>
+        <li><a href="blogs.html" class="nav-link">Blogs</a></li>
+        <li><a href="admission.html" class="nav-link">Admission</a></li>
+        <li><a href="about.html" class="nav-link active">About Us</a></li>
+        <li><a href="contact.html" class="nav-link">Contact Us</a></li>
+      </ul>
+      
+      <div class="navbar-actions">
+        <div class="lang-switcher">
+          <button class="switcher-btn"><span class="flag">🇬🇧</span> <span>English</span> <i>▼</i></button>
+          <div class="switcher-dropdown">
+            <div class="dropdown-item active" data-lang="en"><span class="flag">🇬🇧</span> English</div>
+            <div class="dropdown-item" data-lang="ar"><span class="flag">🇸🇦</span> العربية</div>
+            <div class="dropdown-item" data-lang="ur"><span class="flag">🇵🇰</span> اردو</div>
+          </div>
+        </div>
+        
+        <div class="theme-switcher">
+          <button class="switcher-btn"><span>🌿</span> <span>Green</span> <i>▼</i></button>
+          <div class="switcher-dropdown">
+            <div class="dropdown-item" data-theme="light"><span>☀️</span> Light</div>
+            <div class="dropdown-item" data-theme="dark"><span>🌙</span> Dark</div>
+            <div class="dropdown-item active" data-theme="islamic-green"><span>🌿</span> Islamic Green</div>
+          </div>
+        </div>
+        
+        <div class="auth-buttons">
+          <button class="btn btn-secondary btn-sm" onclick="app.showModal('loginModal')">Login</button>
+          <button class="btn btn-primary btn-sm" onclick="app.showModal('registerModal')">Signup</button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero-small">
+    <div class="hero-small-content">
+      <h1>About Al-Itqan Institute</h1>
+      <p>Authentic Islamic & Arabic Knowledge by Qualified Scholars</p>
+    </div>
+  </section>
+
+  <!-- Featured Scholar Section -->
+  <section class="scholar-section">
+    <div class="container">
+      <div class="scholar-card">
+        <div class="scholar-image">
+          <div class="scholar-image-content">
+            <div class="scholar-avatar">👤</div>
+            <h3 class="scholar-name">Dr. Noor Ur Rahman Hazarvi</h3>
+            <p class="scholar-title">Hafizahullah</p>
+            <span class="scholar-badge">✨ Featured Scholar</span>
+          </div>
+        </div>
+        
+        <div class="scholar-details">
+          <div class="scholar-header">
+            <h2>Dr. Noor Ur Rahman Hazarvi</h2>
+            <p>Distinguished researcher, hadith scholar, and expert in hadith sciences</p>
+          </div>
+          
+          <ul class="qualification-list">
+            <li>
+              <span class="qualification-icon">🎓</span>
+              <div class="qualification-content">
+                <h4>PhD in Hadith Sciences</h4>
+                <p>International Islamic University Islamabad (CGPA 4.0)</p>
+              </div>
+            </li>
+            <li>
+              <span class="qualification-icon">📜</span>
+              <div class="qualification-content">
+                <h4>Khārij Graduate</h4>
+                <p>Jamia Banori Town - Daktūra fī ʿUlūm as-Sunnah</p>
+              </div>
+            </li>
+            <li>
+              <span class="qualification-icon">🏆</span>
+              <div class="qualification-content">
+                <h4>Gold Medalist</h4>
+                <p>MA in Arabic - International Islamic University Islamabad</p>
+              </div>
+            </li>
+            <li>
+              <span class="qualification-icon">🥇</span>
+              <div class="qualification-content">
+                <h4>First Position Pakistan</h4>
+                <p>Shahadat al-Alimiyyah - Wafaq al-Madaris al-Arabiyyah Pakistan</p>
+              </div>
+            </li>
+          </ul>
+          
+          <div class="positions-grid">
+            <div class="position-card">
+              <span class="icon">🏛️</span>
+              <h4>Jamia Al-Rashid Karachi</h4>
+              <p>Head of Specialization in Hadith Department</p>
+            </div>
+            <div class="position-card">
+              <span class="icon">📚</span>
+              <h4>Jamia Haqqania Akora Khattak</h4>
+              <p>Member of Specialization in Hadith Department</p>
+            </div>
+            <div class="position-card">
+              <span class="icon">🎓</span>
+              <h4>Al-Ghazali University</h4>
+              <p>Coordinator of MS (Islamic Studies - Hadith) program</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Biography Accordion -->
+      <div class="accordion" style="margin-top: 3rem;">
+        <div class="accordion-item">
+          <div class="accordion-header" onclick="toggleAccordion(this)">
+            <h4>Introduction & Background</h4>
+            <span class="accordion-icon">▼</span>
+          </div>
+          <div class="accordion-content">
+            <div class="accordion-body">
+              <p>His Eminence Sheikh Dr. Noor Ur Rahman Hazarvi is a distinguished researcher, hadith scholar, and expert in hadith sciences of the contemporary era, who has dedicated his scholarly life to the research and teaching of the Prophetic Hadith and its intricate sciences. He holds a prominent position in scholarly circles, particularly in the fields of Ilm al-Ilal (Science of Hidden Defects), Jarh wa Ta'dil (Criticism and Praise of Narrators), and Hadith Criticism due to his deep insight and research expertise.</p>
+              <p>Currently, he serves as the Head of the Specialization in Hadith Department at Jamia Al-Rashid Karachi and is also a member of the Specialization in Hadith Department at Jamia Haqqania Akora Khattak. He is also associated as the Coordinator of the MS (Islamic Studies – Hadith) program at Al-Ghazali University Karachi.</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="accordion-item">
+          <div class="accordion-header" onclick="toggleAccordion(this)">
+            <h4>Education & Qualifications</h4>
+            <span class="accordion-icon">▼</span>
+          </div>
+          <div class="accordion-content">
+            <div class="accordion-body">
+              <p>Dr. Noor Ur Rahman Hazarvi obtained his PhD and MPhil degrees in Hadith Sciences from the International Islamic University Islamabad with outstanding performance, achieving the highest grade (CGPA 4.0) and excellent percentages at both levels. He also earned an MA in Arabic from the same university and received a Gold Medal.</p>
+              <p>Earlier, he proved his exceptional scholarly abilities by securing first position in the entire Pakistan in the Shahadat al-Alimiyyah from Wafaq al-Madaris al-Arabiyyah Pakistan. He completed his Khārij (specialization) from Jamia Banori Town with the degree of Daktūra fī ʿUlūm as-Sunnah.</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="accordion-item">
+          <div class="accordion-header" onclick="toggleAccordion(this)">
+            <h4>Teaching Experience</h4>
+            <span class="accordion-icon">▼</span>
+          </div>
+          <div class="accordion-content">
+            <div class="accordion-body">
+              <p>His teaching experience is extensive and diverse. He has been associated with teaching Islamic sciences, history, and particularly Hadith sciences at various universities and educational institutions. He has served as a Visiting Lecturer at the University of Chakwal and the University of Peshawar, and as an Assistant Professor (Adjunct Faculty) at Al-Kawthar University Karachi.</p>
+              <p>Additionally, he served as a columnist for several years in the scholarly and intellectual magazine Wafaq al-Madaris, contributing insightful articles on various Islamic topics.</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="accordion-item">
+          <div class="accordion-header" onclick="toggleAccordion(this)">
+            <h4>Areas of Expertise</h4>
+            <span class="accordion-icon">▼</span>
+          </div>
+          <div class="accordion-content">
+            <div class="accordion-body">
+              <p>Dr. Hazarvi's primary field is Hadith and its critical sciences. He possesses particular expertise in teaching the following disciplines:</p>
+              <ul class="expertise-list">
+                <li>Ilm al-Tafsir (Science of Quranic Exegesis)</li>
+                <li>Ilm al-Ilal (Science of Hidden Defects)</li>
+                <li>Ilm al-Jarh wa Ta'dil (Science of Narrator Criticism)</li>
+                <li>Ulum al-Hadith</li>
+                <li>Usul al-Fiqh al-Hanafi (with practical applications)</li>
+                <li>Ilm al-Balagha (Rhetoric)</li>
+                <li>Arabic Literature</li>
+                <li>Nahw and Sarf (Grammar and Morphology)</li>
+                <li>Logic</li>
+                <li>Other Islamic and Arabic sciences</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        
+        <div class="accordion-item">
+          <div class="accordion-header" onclick="toggleAccordion(this)">
+            <h4>Research & Publications</h4>
+            <span class="accordion-icon">▼</span>
+          </div>
+          <div class="accordion-content">
+            <div class="accordion-body">
+              <p>His contribution in the field of research and authorship is also significant. Several scholarly books and research studies have been published, particularly containing in-depth research on the critical methodologies of Imam Muslim, Imam Bukhari, Imam al-Daraqutni, and early hadith scholars.</p>
+              <p>His numerous research articles have been published in HEC-approved scholarly journals, discussing important topics such as Hadith Sciences, Mustalah al-Hadith, differences in chains and texts, and the relationship between Fiqh and Hadith.</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="accordion-item">
+          <div class="accordion-header" onclick="toggleAccordion(this)">
+            <h4>Language Proficiency</h4>
+            <span class="accordion-icon">▼</span>
+          </div>
+          <div class="accordion-content">
+            <div class="accordion-body">
+              <p>Linguistically, he has mastery over Arabic, Urdu, English, and Pashto languages. He has special expertise in Arabic oratory, scholarly writing, research guidance, and teaching Arabic to Arab students.</p>
+              <p>This multilingual proficiency enables him to communicate complex Islamic concepts effectively to students from diverse linguistic backgrounds and to access primary sources in their original languages.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mission/Vision Section -->
+  <section class="mission-section">
+    <div class="container">
+      <h2 class="section-title">Our Purpose</h2>
+      <p class="section-subtitle">Committed to authentic Islamic education</p>
+      
+      <div class="mission-grid">
+        <div class="mission-card">
+          <div class="mission-icon">🎯</div>
+          <h3>Our Mission</h3>
+          <p>To provide authentic Islamic and Arabic education through qualified scholars, preserving and transmitting traditional Islamic sciences to the next generation.</p>
+        </div>
+        
+        <div class="mission-card">
+          <div class="mission-icon">👁️</div>
+          <h3>Our Vision</h3>
+          <p>To become a leading global institution for Islamic education, producing scholars who embody excellence in knowledge and character.</p>
+        </div>
+        
+        <div class="mission-card">
+          <div class="mission-icon">💎</div>
+          <h3>Our Values</h3>
+          <p>Authenticity, Excellence, Accessibility, and Innovation in Islamic learning while maintaining traditional scholarly methods.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta-section">
+    <div class="container">
+      <h2>Start Your Journey Today</h2>
+      <p>Join thousands of students learning authentic Islamic knowledge from qualified scholars around the world.</p>
+      <div class="cta-buttons">
+        <a href="courses.html" class="btn btn-primary">Explore Courses</a>
+        <a href="admission.html" class="btn btn-outline">Apply Now</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <img src="../../logo.png" alt="Al-Itqan Logo" class="logo">
+          <p>Al-Itqan Institute for Islamic & Arabic Studies</p>
+        </div>
+        <div class="footer-links">
+          <h4 class="footer-title">Quick Links</h4>
+          <ul>
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="courses.html">Courses</a></li>
+            <li><a href="blogs.html">Blogs</a></li>
+            <li><a href="admission.html">Admission</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+          </ul>
+        </div>
+        <div class="footer-contact">
+          <h4 class="footer-title">Contact</h4>
+          <p>📱 <a href="https://wa.me/923434487450">+92 343 4487450</a></p>
+          <p>✉️ <a href="mailto:info@itqaninstitute.com">info@itqaninstitute.com</a></p>
+          <p>🌐 24/7 Support Available</p>
+        </div>
+        <div class="footer-social-section">
+          <h4 class="footer-title">Follow Us</h4>
+          <div class="footer-social">
+            <a href="#"><span>📘</span></a>
+            <a href="#"><span>🐦</span></a>
+            <a href="#"><span>📸</span></a>
+            <a href="#"><span>📺</span></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copyright">&copy; 2025 Al-Itqan Institute. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Login Modal -->
+  <div class="modal-overlay" id="loginModal">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 class="modal-title">Welcome Back</h3>
+        <button class="modal-close">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form id="loginForm">
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" name="email" class="form-input" required>
+          </div>
+          <div class="form-group">
+            <label>Password</label>
+            <input type="password" name="password" class="form-input" required>
+          </div>
+          <button type="submit" class="btn btn-primary" style="width: 100%;">Login</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="../js/main.js"></script>
+  <script>
+    // Accordion toggle
+    function toggleAccordion(header) {
+      const item = header.parentElement;
+      const wasActive = item.classList.contains('active');
+      
+      // Close all
+      document.querySelectorAll('.accordion-item').forEach(i => i.classList.remove('active'));
+      
+      // Open clicked if wasn't active
+      if (!wasActive) {
+        item.classList.add('active');
+      }
+    }
+    
+    // Login form
+    document.getElementById('loginForm')?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const formData = new FormData(e.target);
+      await app.login(formData.get('email'), formData.get('password'));
+    });
+  </script>
+</body>
+</html>

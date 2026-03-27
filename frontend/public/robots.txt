@@ -1,0 +1,18 @@
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://itqaninstitute.com/sitemap.xml
+
+# Disallow admin panels from indexing
+Disallow: /panel/
+Disallow: /admin/
+Disallow: /api/
+
+# Allow main pages
+Allow: /index.html
+Allow: /courses.html
+Allow: /blogs.html
+Allow: /admission.html
+Allow: /about.html
+Allow: /contact.html

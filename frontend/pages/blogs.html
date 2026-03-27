@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- SEO -->
+  <title>Blogs | Al-Itqan Institute</title>
+  <meta name="description" content="Read authentic Islamic articles on Quran, Hadith, Fiqh, Arabic language, and spiritual development written by qualified scholars at Al-Itqan Institute.">
+  <link rel="canonical" href="https://itqaninstitute.com/blogs">
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="Islamic Blogs & Articles | Al-Itqan Institute">
+  <meta property="og:description" content="Insights, knowledge, and reflections from authentic Islamic sources.">
+  <meta property="og:image" content="https://i.ibb.co/V0pRN6XT/logo.png">
+  
+  <!-- Favicons -->
+  <link rel="icon" href="https://uksptkeroneiqfcqzsgh.supabase.co/storage/v1/object/public/assets/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://uksptkeroneiqfcqzsgh.supabase.co/storage/v1/object/public/assets/favicon-32x32.png">
+  
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Styles -->
+  <link rel="stylesheet" href="../css/styles.css">
+  
+  <style>
+    /* Blogs Page Styles */
+    .hero-small {
+      position: relative;
+      min-height: 50vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding-top: var(--header-height);
+      background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.7)), url('../../images/hadees.jpeg');
+      background-size: cover;
+      background-position: center;
+    }
+    
+    .hero-small-content {
+      text-align: center;
+      color: white;
+      padding: 2rem;
+    }
+    
+    .hero-small h1 {
+      font-size: 3rem;
+      color: white;
+      margin-bottom: 1rem;
+    }
+    
+    .hero-small p {
+      font-size: 1.1rem;
+      opacity: 0.9;
+      max-width: 600px;
+      margin: 0 auto 1rem;
+    }
+    
+    /* Featured Blog */
+    .featured-blog {
+      margin-bottom: 4rem;
+    }
+    
+    .featured-blog-card {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      background: var(--bg-card);
+      border-radius: var(--card-radius);
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+    }
+    
+    .featured-image {
+      height: 100%;
+      min-height: 400px;
+    }
+    
+    .featured-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .featured-content {
+      padding: 3rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    
+    .featured-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--accent-gold);
+      color: white;
+      padding: 8px 16px;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      width: fit-content;
+    }
+    
+    .featured-content h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      line-height: 1.3;
+    }
+    
+    .featured-content p {
+      color: var(--text-secondary);
+      font-size: 1.1rem;
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+    }
+    
+    .featured-meta {
+      display: flex;
+      gap: 1.5rem;
+      color: var(--text-tertiary);
+      font-size: 0.9rem;
+      margin-bottom: 2rem;
+    }
+    
+    /* Filters */
+    .filters-section {
+      background: var(--bg-secondary);
+      padding: 2rem 0;
+      border-bottom: 1px solid var(--border-color);
+    }
+    
+    .filters-container {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+    }
+    
+    .search-box {
+      flex: 1;
+      min-width: 250px;
+      max-width: 400px;
+      position: relative;
+    }
+    
+    .search-box input {
+      width: 100%;
+      padding: 12px 16px 12px 48px;
+      border: 2px solid var(--border-color);
+      border-radius: var(--btn-radius);
+      font-size: 1rem;
+      background: var(--bg-card);
+    }
+    
+    .search-box input:focus {
+      outline: none;
+      border-color: var(--primary-color);
+    }
+    
+    .search-box .search-icon {
+      position: absolute;
+      left: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-tertiary);
+      font-size: 1.2rem;
+    }
+    
+    .filter-select {
+      padding: 12px 40px 12px 16px;
+      border: 2px solid var(--border-color);
+      border-radius: var(--btn-radius);
+      font-size: 0.95rem;
+      background: var(--bg-card);
+      cursor: pointer;
+      min-width: 160px;
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%2364748b' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 16px center;
+    }
+    
+    /* Blogs Grid */
+    .blogs-count {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      margin-bottom: 1.5rem;
+    }
+    
+    .blogs-count strong {
+      color: var(--primary-color);
+    }
+    
+    .blogs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 2rem;
+    }
+    
+    .blog-card {
+      background: var(--bg-card);
+      border-radius: var(--card-radius);
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+      transition: all var(--transition-base);
+      border: 1px solid var(--border-light);
+    }
+    
+    .blog-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-xl);
+    }
+    
+    .blog-image {
+      height: 220px;
+      overflow: hidden;
+    }
+    
+    .blog-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform var(--transition-slow);
+    }
+    
+    .blog-card:hover .blog-image img {
+      transform: scale(1.1);
+    }
+    
+    .blog-content {
+      padding: 1.5rem;
+    }
+    
+    .blog-category {
+      display: inline-block;
+      background: var(--accent-green-light);
+      color: var(--primary-dark);
+      padding: 4px 12px;
+      border-radius: 50px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+    }
+    
+    .blog-title {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+      color: var(--text-primary);
+      line-height: 1.4;
+    }
+    
+    .blog-excerpt {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: 1rem;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      line-clamp: 3;
+      -webkit-box-orient: vertical;
+      box-orient: vertical;
+      overflow: hidden;
+    }
+    
+    .blog-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border-light);
+      font-size: 0.85rem;
+      color: var(--text-tertiary);
+    }
+    
+    .blog-author {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .author-avatar {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--primary-gradient);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+    
+    /* Why Read Section */
+    .why-read-section {
+      background: var(--bg-secondary);
+    }
+    
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+    
+    .benefit-card {
+      background: var(--bg-card);
+      padding: 2rem;
+      border-radius: var(--card-radius);
+      text-align: center;
+      border: 1px solid var(--border-light);
+      transition: all var(--transition-base);
+    }
+    
+    .benefit-card:hover {
+      border-color: var(--primary-light);
+      transform: translateY(-4px);
+    }
+    
+    .benefit-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+    
+    .benefit-card h4 {
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+    }
+    
+    .benefit-card p {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+    }
+    
+    /* Empty State */
+    .empty-state {
+      text-align: center;
+      padding: 4rem;
+      grid-column: 1 / -1;
+    }
+    
+    .empty-state-icon {
+      font-size: 4rem;
+      margin-bottom: 1rem;
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      .featured-blog-card {
+        grid-template-columns: 1fr;
+      }
+      
+      .featured-image {
+        min-height: 250px;
+      }
+      
+      .featured-content {
+        padding: 2rem;
+      }
+      
+      .blogs-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="container">
+      <a href="../index.html" class="navbar-brand">
+        <img src="../../logo.png" alt="Al-Itqan Logo" class="logo">
+        <div class="brand-text">
+          <span class="arabic">معهد الإتقان</span>
+          <span class="english">Al-Itqan Institute</span>
+        </div>
+      </a>
+      
+      <button class="menu-toggle" aria-label="Toggle Menu">
+        <span></span><span></span><span></span>
+      </button>
+      
+      <ul class="navbar-nav">
+        <li><a href="../index.html" class="nav-link">Home</a></li>
+        <li><a href="courses.html" class="nav-link">Courses</a></li>
+        <li><a href="blogs.html" class="nav-link active">Blogs</a></li>
+        <li><a href="admission.html" class="nav-link">Admission</a></li>
+        <li><a href="about.html" class="nav-link">About Us</a></li>
+        <li><a href="contact.html" class="nav-link">Contact Us</a></li>
+      </ul>
+      
+      <div class="navbar-actions">
+        <div class="lang-switcher">
+          <button class="switcher-btn"><span class="flag">🇬🇧</span> <span>English</span> <i>▼</i></button>
+          <div class="switcher-dropdown">
+            <div class="dropdown-item active" data-lang="en"><span class="flag">🇬🇧</span> English</div>
+            <div class="dropdown-item" data-lang="ar"><span class="flag">🇸🇦</span> العربية</div>
+            <div class="dropdown-item" data-lang="ur"><span class="flag">🇵🇰</span> اردو</div>
+          </div>
+        </div>
+        
+        <div class="theme-switcher">
+          <button class="switcher-btn"><span>🌿</span> <span>Green</span> <i>▼</i></button>
+          <div class="switcher-dropdown">
+            <div class="dropdown-item" data-theme="light"><span>☀️</span> Light</div>
+            <div class="dropdown-item" data-theme="dark"><span>🌙</span> Dark</div>
+            <div class="dropdown-item active" data-theme="islamic-green"><span>🌿</span> Islamic Green</div>
+          </div>
+        </div>
+        
+        <div class="auth-buttons">
+          <button class="btn btn-secondary btn-sm" onclick="app.showModal('loginModal')">Login</button>
+          <button class="btn btn-primary btn-sm" onclick="app.showModal('registerModal')">Signup</button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero-small">
+    <div class="hero-small-content">
+      <h1>Islamic Blogs & Articles</h1>
+      <p>Insights, knowledge, and reflections from authentic Islamic sources</p>
+      <p style="font-size: 1rem; opacity: 0.8;">Explore articles covering Qur'an, Hadith, Fiqh, Arabic language, and spiritual development written by qualified scholars.</p>
+    </div>
+  </section>
+
+  <!-- Featured Blog -->
+  <section class="section" style="padding-bottom: 0;">
+    <div class="container">
+      <div class="featured-blog">
+        <div class="featured-blog-card" id="featuredBlog">
+          <div class="featured-image">
+            <img src="../../images/quran_study_scene_1769312205837.png" alt="Featured Blog">
+          </div>
+          <div class="featured-content">
+            <span class="featured-badge">⭐ Featured Article</span>
+            <h2>The Importance of Authentic Knowledge in Islam</h2>
+            <p>In an age of information overload, seeking authentic Islamic knowledge from qualified scholars has never been more crucial. This article explores the traditional methodology of learning and its relevance today.</p>
+            <div class="featured-meta">
+              <span>👤 Dr. Noor Ur Rahman</span>
+              <span>📅 Dec 15, 2024</span>
+              <span>👁️ 1,234 views</span>
+            </div>
+            <a href="#" class="btn btn-primary">Read Full Article</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Filters -->
+  <section class="filters-section">
+    <div class="container">
+      <div class="filters-container">
+        <div class="search-box">
+          <span class="search-icon">🔍</span>
+          <input type="text" id="searchInput" placeholder="Search articles...">
+        </div>
+        
+        <div style="display: flex; gap: 1rem;">
+          <select class="filter-select" id="categoryFilter">
+            <option value="">All Categories</option>
+            <option value="Quran">Quran</option>
+            <option value="Hadith">Hadith</option>
+            <option value="Fiqh">Fiqh</option>
+            <option value="Arabic">Arabic</option>
+            <option value="Spirituality">Spirituality</option>
+          </select>
+          
+          <select class="filter-select" id="sortFilter">
+            <option value="newest">Latest</option>
+            <option value="popular">Most Popular</option>
+            <option value="oldest">Oldest</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Blogs Grid -->
+  <section class="section">
+    <div class="container">
+      <p class="blogs-count">Showing <strong id="blogsCount">0</strong> articles</p>
+      
+      <div class="blogs-grid" id="blogsGrid">
+        <div class="skeleton" style="height: 400px;"></div>
+        <div class="skeleton" style="height: 400px;"></div>
+        <div class="skeleton" style="height: 400px;"></div>
+        <div class="skeleton" style="height: 400px;"></div>
+        <div class="skeleton" style="height: 400px;"></div>
+        <div class="skeleton" style="height: 400px;"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Read Our Blogs -->
+  <section class="section why-read-section">
+    <div class="container">
+      <h2 class="section-title">Why Read Our Blogs</h2>
+      <p class="section-subtitle">Authentic knowledge from verified scholars</p>
+      
+      <div class="benefits-grid">
+        <div class="benefit-card">
+          <div class="benefit-icon">📚</div>
+          <h4>Authentic Knowledge</h4>
+          <p>All content verified by qualified scholars with authentic chains.</p>
+        </div>
+        
+        <div class="benefit-card">
+          <div class="benefit-icon">✅</div>
+          <h4>Verified Scholars</h4>
+          <p>Written by experts with recognized qualifications and Ijazah.</p>
+        </div>
+        
+        <div class="benefit-card">
+          <div class="benefit-icon">💡</div>
+          <h4>Easy to Understand</h4>
+          <p>Complex topics explained in clear, accessible language.</p>
+        </div>
+        
+        <div class="benefit-card">
+          <div class="benefit-icon">🔄</div>
+          <h4>Regular Updates</h4>
+          <p>New articles published weekly on various Islamic topics.</p>
+        </div>
+        
+        <div class="benefit-card">
+          <div class="benefit-icon">🌍</div>
+          <h4>Multi-Language Support</h4>
+          <p>Content available in English, Arabic, and Urdu.</p>
+        </div>
+        
+        <div class="benefit-card">
+          <div class="benefit-icon">🎯</div>
+          <h4>Practical Guidance</h4>
+          <p>Actionable advice for daily Islamic life and spirituality.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <img src="../../logo.png" alt="Al-Itqan Logo" class="logo">
+          <p>Al-Itqan Institute for Islamic & Arabic Studies - Providing authentic Islamic education from qualified scholars.</p>
+        </div>
+        
+        <div class="footer-links">
+          <h4 class="footer-title">Quick Links</h4>
+          <ul>
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="courses.html">Courses</a></li>
+            <li><a href="blogs.html">Blogs</a></li>
+            <li><a href="admission.html">Admission</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-contact">
+          <h4 class="footer-title">Contact</h4>
+          <p><span class="icon">📱</span> <a href="https://wa.me/923434487450">+92 343 4487450</a></p>
+          <p><span class="icon">✉️</span> <a href="mailto:info@itqaninstitute.com">info@itqaninstitute.com</a></p>
+          <p><span class="icon">🌐</span> 24/7 Support Available</p>
+        </div>
+        
+        <div class="footer-social-section">
+          <h4 class="footer-title">Follow Us</h4>
+          <div class="footer-social">
+            <a href="#"><span>📘</span></a>
+            <a href="#"><span>🐦</span></a>
+            <a href="#"><span>📸</span></a>
+            <a href="#"><span>📺</span></a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p class="footer-copyright">&copy; 2025 Al-Itqan Institute. All rights reserved.</p>
+        <div class="footer-social">
+          <a href="https://wa.me/923434487450" target="_blank"><span>💬</span></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Login Modal -->
+  <div class="modal-overlay" id="loginModal">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 class="modal-title">Welcome Back</h3>
+        <button class="modal-close">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form id="loginForm">
+          <div class="form-group">
+            <label class="form-label">Email</label>
+            <input type="email" name="email" class="form-input" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Password</label>
+            <input type="password" name="password" class="form-input" required>
+          </div>
+          <button type="submit" class="btn btn-primary" style="width: 100%;">Login</button>
+        </form>
+      </div>
+      <div class="modal-footer" style="justify-content: center;">
+        <p>Don't have an account? <a href="#" onclick="app.hideModal('loginModal'); app.showModal('registerModal');">Sign up</a></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Register Modal -->
+  <div class="modal-overlay" id="registerModal">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 class="modal-title">Create Account</h3>
+        <button class="modal-close">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form id="registerForm">
+          <div class="form-group">
+            <label class="form-label">Full Name</label>
+            <input type="text" name="name" class="form-input" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Email</label>
+            <input type="email" name="email" class="form-input" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Password</label>
+            <input type="password" name="password" class="form-input" required>
+          </div>
+          <button type="submit" class="btn btn-primary" style="width: 100%;">Sign Up</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="../js/main.js"></script>
+  <script>
+    let allBlogs = [];
+    let filteredBlogs = [];
+    
+    async function loadBlogs() {
+      try {
+        const response = await fetch(`${CONFIG.API_BASE_URL}/blogs`);
+        const data = await response.json();
+        
+        if (data.success) {
+          allBlogs = data.data.filter(blog => blog.status === 'published');
+          filteredBlogs = allBlogs;
+          renderBlogs();
+          
+          // Update featured blog if available
+          const featured = allBlogs.find(b => b.is_featured);
+          if (featured) {
+            updateFeaturedBlog(featured);
+          }
+        }
+      } catch (error) {
+        console.error('Error loading blogs:', error);
+        document.getElementById('blogsGrid').innerHTML = `
+          <div class="empty-state">
+            <div class="empty-state-icon">⚠️</div>
+            <h3>Failed to load articles</h3>
+            <p>Please try again later</p>
+          </div>
+        `;
+      }
+    }
+    
+    function updateFeaturedBlog(blog) {
+      const featuredContainer = document.getElementById('featuredBlog');
+      featuredContainer.innerHTML = `
+        <div class="featured-image">
+          <img src="${blog.image || '../../images/quran_study_scene_1769312205837.png'}" alt="${blog.title}">
+        </div>
+        <div class="featured-content">
+          <span class="featured-badge">⭐ Featured Article</span>
+          <h2>${blog.title}</h2>
+          <p>${blog.excerpt || blog.content?.substring(0, 200)}...</p>
+          <div class="featured-meta">
+            <span>👤 ${blog.author || 'Al-Itqan Team'}</span>
+            <span>📅 ${new Date(blog.createdAt).toLocaleDateString()}</span>
+            <span>👁️ ${blog.views || 0} views</span>
+          </div>
+          <a href="blog-detail.html?id=${blog.id}" class="btn btn-primary">Read Full Article</a>
+        </div>
+      `;
+    }
+    
+    function renderBlogs() {
+      const grid = document.getElementById('blogsGrid');
+      document.getElementById('blogsCount').textContent = filteredBlogs.length;
+      
+      if (filteredBlogs.length === 0) {
+        grid.innerHTML = `
+          <div class="empty-state">
+            <div class="empty-state-icon">📝</div>
+            <h3>No articles found</h3>
+            <p>Try adjusting your search</p>
+          </div>
+        `;
+        return;
+      }
+      
+      grid.innerHTML = filteredBlogs.slice(0, 6).map(blog => `
+        <div class="blog-card">
+          <div class="blog-image">
+            <img src="${blog.image || '../../images/quran_study_scene_1769312205837.png'}" alt="${blog.title}">
+          </div>
+          <div class="blog-content">
+            <span class="blog-category">${blog.category || 'General'}</span>
+            <h3 class="blog-title">${blog.title}</h3>
+            <p class="blog-excerpt">${blog.excerpt || blog.content?.substring(0, 150) || 'Read this article to learn more...'}...</p>
+            <div class="blog-meta">
+              <div class="blog-author">
+                <span class="author-avatar">${(blog.author || 'A').charAt(0)}</span>
+                <span>${blog.author || 'Al-Itqan Team'}</span>
+              </div>
+              <span>👁️ ${blog.views || 0}</span>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+    
+    function filterBlogs() {
+      const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+      const categoryFilter = document.getElementById('categoryFilter').value;
+      
+      filteredBlogs = allBlogs.filter(blog => {
+        const matchesSearch = blog.title.toLowerCase().includes(searchTerm) ||
+                             (blog.content && blog.content.toLowerCase().includes(searchTerm));
+        const matchesCategory = !categoryFilter || blog.category === categoryFilter;
+        return matchesSearch && matchesCategory;
+      });
+      
+      const sortValue = document.getElementById('sortFilter').value;
+      if (sortValue === 'popular') {
+        filteredBlogs.sort((a, b) => (b.views || 0) - (a.views || 0));
+      } else if (sortValue === 'oldest') {
+        filteredBlogs.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
+      } else {
+        filteredBlogs.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+      }
+      
+      renderBlogs();
+    }
+    
+    // Event listeners
+    document.getElementById('searchInput')?.addEventListener('input', filterBlogs);
+    document.getElementById('categoryFilter')?.addEventListener('change', filterBlogs);
+    document.getElementById('sortFilter')?.addEventListener('change', filterBlogs);
+    
+    document.getElementById('loginForm')?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const formData = new FormData(e.target);
+      await app.login(formData.get('email'), formData.get('password'));
+    });
+    
+    document.getElementById('registerForm')?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const formData = new FormData(e.target);
+      await app.register({
+        name: formData.get('name'),
+        email: formData.get('email'),
+        password: formData.get('password')
+      });
+    });
+    
+    // Initialize
+    loadBlogs();
+  </script>
+</body>
+</html>

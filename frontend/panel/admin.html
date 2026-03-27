@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Panel | Al-Itqan Institute</title>
+  
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --primary: #0f766e;
+      --primary-light: #14b8a6;
+      --primary-dark: #134e4a;
+      --bg-sidebar: #0f172a;
+      --bg-main: #f1f5f9;
+      --bg-card: #ffffff;
+      --text-primary: #1e293b;
+      --text-secondary: #64748b;
+      --text-light: #94a3b8;
+      --success: #10b981;
+      --warning: #f59e0b;
+      --danger: #ef4444;
+      --border: #e2e8f0;
+      --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1);
+      --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+    }
+    
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Inter', sans-serif; background: var(--bg-main); color: var(--text-primary); }
+    
+    /* Layout */
+    .admin-layout { display: flex; min-height: 100vh; }
+    
+    /* Sidebar */
+    .sidebar {
+      width: 280px;
+      background: var(--bg-sidebar);
+      color: white;
+      position: fixed;
+      height: 100vh;
+      overflow-y: auto;
+      z-index: 100;
+    }
+    
+    .sidebar-header {
+      padding: 2rem;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      text-align: center;
+    }
+    
+    .sidebar-header img { width: 60px; height: 60px; border-radius: 50%; margin-bottom: 1rem; }
+    .sidebar-header h3 { font-size: 1.1rem; margin-bottom: 0.25rem; }
+    .sidebar-header p { font-size: 0.85rem; opacity: 0.7; }
+    
+    .sidebar-nav { padding: 1rem 0; }
+    .nav-section { margin-bottom: 1.5rem; }
+    .nav-section-title { 
+      padding: 0.75rem 1.5rem; 
+      font-size: 0.75rem; 
+      text-transform: uppercase; 
+      letter-spacing: 1px; 
+      opacity: 0.5; 
+    }
+    
+    .nav-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.875rem 1.5rem;
+      color: rgba(255,255,255,0.7);
+      cursor: pointer;
+      transition: all 0.2s;
+      border-left: 3px solid transparent;
+    }
+    
+    .nav-item:hover, .nav-item.active {
+      background: rgba(255,255,255,0.05);
+      color: white;
+      border-left-color: var(--primary-light);
+    }
+    
+    .nav-item .icon { font-size: 1.25rem; }
+    
+    /* Main Content */
+    .main-content { flex: 1; margin-left: 280px; }
+    
+    /* Header */
+    .top-header {
+      background: var(--bg-card);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+    
+    .header-search { position: relative; }
+    .header-search input {
+      padding: 0.625rem 1rem 0.625rem 2.5rem;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      width: 300px;
+      font-size: 0.9rem;
+    }
+    .header-search .search-icon { position: absolute; left: 0.75rem; top: 50%; transform: translateY(-50%); opacity: 0.5; }
+    
+    .header-actions { display: flex; align-items: center; gap: 1rem; }
+    .header-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: white;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    
+    .notification-badge {
+      position: absolute;
+      top: -4px;
+      right: -4px;
+      width: 18px;
+      height: 18px;
+      background: var(--danger);
+      color: white;
+      border-radius: 50%;
+      font-size: 0.7rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .user-menu {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .user-menu:hover { background: var(--bg-main); }
+    .user-avatar { width: 36px; height: 36px; background: var(--primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 600; }
+    
+    /* Dashboard Content */
+    .dashboard-content { padding: 2rem; }
+    
+    .page-header { margin-bottom: 2rem; }
+    .page-header h1 { font-size: 1.75rem; margin-bottom: 0.5rem; }
+    .page-header p { color: var(--text-secondary); }
+    
+    /* Stats Grid */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    
+    .stat-card {
+      background: var(--bg-card);
+      padding: 1.5rem;
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+    
+    .stat-icon {
+      width: 50px;
+      height: 50px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+    }
+    .stat-icon.blue { background: #dbeafe; }
+    .stat-icon.green { background: #d1fae5; }
+    .stat-icon.yellow { background: #fef3c7; }
+    .stat-icon.purple { background: #ede9fe; }
+    
+    .stat-info h3 { font-size: 1.75rem; margin-bottom: 0.25rem; }
+    .stat-info p { color: var(--text-secondary); font-size: 0.9rem; }
+    .stat-change { font-size: 0.8rem; margin-top: 0.5rem; }
+    .stat-change.positive { color: var(--success); }
+    .stat-change.negative { color: var(--danger); }
+    
+    /* Content Grid */
+    .content-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 1.5rem; }
+    
+    .panel-card {
+      background: var(--bg-card);
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+    
+    .panel-header {
+      padding: 1.25rem 1.5rem;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .panel-header h3 { font-size: 1.1rem; }
+    
+    .panel-body { padding: 1.5rem; }
+    
+    /* Table */
+    .data-table { width: 100%; border-collapse: collapse; }
+    .data-table th, .data-table td { 
+      padding: 1rem; 
+      text-align: left; 
+      border-bottom: 1px solid var(--border);
+      font-size: 0.9rem;
+    }
+    .data-table th { 
+      color: var(--text-secondary); 
+      font-weight: 500; 
+      text-transform: uppercase; 
+      font-size: 0.75rem;
+      letter-spacing: 0.5px;
+    }
+    .data-table tr:hover { background: var(--bg-main); }
+    
+    .status-badge {
+      padding: 4px 12px;
+      border-radius: 50px;
+      font-size: 0.75rem;
+      font-weight: 500;
+    }
+    .status-badge.pending { background: #fef3c7; color: #92400e; }
+    .status-badge.approved { background: #d1fae5; color: #065f46; }
+    .status-badge.rejected { background: #fee2e2; color: #991b1b; }
+    
+    .action-btn {
+      padding: 6px 12px;
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+      font-size: 0.8rem;
+      margin-right: 0.5rem;
+    }
+    .action-btn.approve { background: var(--success); color: white; }
+    .action-btn.reject { background: var(--danger); color: white; }
+    .action-btn.view { background: var(--bg-main); color: var(--text-secondary); }
+    
+    /* Activity List */
+    .activity-list { list-style: none; }
+    .activity-item {
+      display: flex;
+      gap: 1rem;
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .activity-item:last-child { border-bottom: none; padding-bottom: 0; }
+    .activity-icon { width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0; }
+    .activity-content p { font-size: 0.9rem; margin-bottom: 0.25rem; }
+    .activity-content span { font-size: 0.8rem; color: var(--text-light); }
+    
+    /* Tab Navigation */
+    .tab-nav {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .tab-btn {
+      padding: 0.625rem 1.25rem;
+      border-radius: 8px;
+      border: none;
+      background: var(--bg-main);
+      color: var(--text-secondary);
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: all 0.2s;
+    }
+    .tab-btn:hover { background: var(--border); }
+    .tab-btn.active { background: var(--primary); color: white; }
+    
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+    
+    /* Forms */
+    .form-group { margin-bottom: 1.25rem; }
+    .form-label { display: block; font-size: 0.9rem; font-weight: 500; margin-bottom: 0.5rem; }
+    .form-input, .form-select, .form-textarea {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-family: inherit;
+    }
+    .form-input:focus, .form-select:focus, .form-textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+    }
+    .form-textarea { min-height: 120px; resize: vertical; }
+    
+    .form-row { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+    
+    .btn {
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      font-size: 0.95rem;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.2s;
+    }
+    .btn-primary { background: var(--primary); color: white; }
+    .btn-primary:hover { background: var(--primary-dark); }
+    .btn-secondary { background: var(--bg-main); color: var(--text-secondary); }
+    .btn-success { background: var(--success); color: white; }
+    .btn-danger { background: var(--danger); color: white; }
+    
+    /* Responsive */
+    @media (max-width: 1200px) {
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .content-grid { grid-template-columns: 1fr; }
+    }
+    
+    @media (max-width: 768px) {
+      .sidebar { width: 100%; position: relative; height: auto; }
+      .main-content { margin-left: 0; }
+      .stats-grid { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="admin-layout">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <img src="../../logo.png" alt="Logo">
+        <h3>Admin Panel</h3>
+        <p>Al-Itqan Institute</p>
+      </div>
+      
+      <nav class="sidebar-nav">
+        <div class="nav-section">
+          <div class="nav-section-title">Main</div>
+          <div class="nav-item active" data-page="dashboard">
+            <span class="icon">📊</span>
+            <span>Dashboard</span>
+          </div>
+          <div class="nav-item" data-page="courses">
+            <span class="icon">📚</span>
+            <span>Courses</span>
+          </div>
+          <div class="nav-item" data-page="blogs">
+            <span class="icon">📝</span>
+            <span>Blogs</span>
+          </div>
+          <div class="nav-item" data-page="admissions">
+            <span class="icon">🎓</span>
+            <span>Admissions</span>
+          </div>
+        </div>
+        
+        <div class="nav-section">
+          <div class="nav-section-title">Users</div>
+          <div class="nav-item" data-page="students">
+            <span class="icon">👨‍🎓</span>
+            <span>Students</span>
+          </div>
+          <div class="nav-item" data-page="teachers">
+            <span class="icon">👨‍🏫</span>
+            <span>Teachers</span>
+          </div>
+        </div>
+        
+        <div class="nav-section">
+          <div class="nav-section-title">Settings</div>
+          <div class="nav-item" data-page="notifications">
+            <span class="icon">🔔</span>
+            <span>Notifications</span>
+          </div>
+          <div class="nav-item" data-page="settings">
+            <span class="icon">⚙️</span>
+            <span>Settings</span>
+          </div>
+          <div class="nav-item" onclick="logout()">
+            <span class="icon">🚪</span>
+            <span>Logout</span>
+          </div>
+        </div>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Header -->
+      <header class="top-header">
+        <div class="header-search">
+          <span class="search-icon">🔍</span>
+          <input type="text" placeholder="Search...">
+        </div>
+        
+        <div class="header-actions">
+          <button class="header-btn" onclick="showNotifications()">
+            <span>🔔</span>
+            <span class="notification-badge" id="notifCount">3</span>
+          </button>
+          <div class="user-menu">
+            <div class="user-avatar">A</div>
+            <div>
+              <div style="font-size: 0.9rem; font-weight: 500;">Admin User</div>
+              <div style="font-size: 0.75rem; color: var(--text-secondary);">Super Admin</div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- Dashboard Content -->
+      <div class="dashboard-content" id="dashboardPage">
+        <div class="page-header">
+          <h1>Dashboard</h1>
+          <p>Welcome back! Here's what's happening today.</p>
+        </div>
+        
+        <!-- Stats -->
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-icon blue">👨‍🎓</div>
+            <div class="stat-info">
+              <h3 id="totalStudents">0</h3>
+              <p>Total Students</p>
+              <div class="stat-change positive">↑ 12% this month</div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon green">👨‍🏫</div>
+            <div class="stat-info">
+              <h3 id="totalTeachers">0</h3>
+              <p>Total Teachers</p>
+              <div class="stat-change positive">↑ 5% this month</div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon yellow">📚</div>
+            <div class="stat-info">
+              <h3 id="totalCourses">24</h3>
+              <p>Active Courses</p>
+              <div class="stat-change">No change</div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon purple">🎓</div>
+            <div class="stat-info">
+              <h3 id="pendingAdmissions">0</h3>
+              <p>Pending Admissions</p>
+              <div class="stat-change negative">Requires attention</div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Content Grid -->
+        <div class="content-grid">
+          <!-- Recent Admissions -->
+          <div class="panel-card">
+            <div class="panel-header">
+              <h3>Recent Admissions</h3>
+              <a href="#" class="btn btn-secondary" style="padding: 0.5rem 1rem; font-size: 0.85rem;">View All</a>
+            </div>
+            <div class="panel-body">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Applicant</th>
+                    <th>Type</th>
+                    <th>Course</th>
+                    <th>Date</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="admissionsTable">
+                  <tr>
+                    <td colspan="6" style="text-align: center; color: var(--text-secondary);">Loading...</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          
+          <!-- Recent Activity -->
+          <div class="panel-card">
+            <div class="panel-header">
+              <h3>Recent Activity</h3>
+            </div>
+            <div class="panel-body">
+              <ul class="activity-list" id="activityList">
+                <li class="activity-item">
+                  <div class="activity-icon" style="background: #dbeafe;">🎓</div>
+                  <div class="activity-content">
+                    <p>New student admission</p>
+                    <span>2 minutes ago</span>
+                  </div>
+                </li>
+                <li class="activity-item">
+                  <div class="activity-icon" style="background: #d1fae5;">✅</div>
+                  <div class="activity-content">
+                    <p>Course approved</p>
+                    <span>1 hour ago</span>
+                  </div>
+                </li>
+                <li class="activity-item">
+                  <div class="activity-icon" style="background: #fef3c7;">📝</div>
+                  <div class="activity-content">
+                    <p>New blog post published</p>
+                    <span>3 hours ago</span>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Other Pages (Hidden by default) -->
+      <div class="dashboard-content" id="coursesPage" style="display: none;">
+        <div class="page-header">
+          <h1>Courses Management</h1>
+          <button class="btn btn-primary" onclick="showAddCourseModal()">+ Add Course</button>
+        </div>
+        <div class="panel-card">
+          <div class="panel-body">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Title</th>
+                  <th>Category</th>
+                  <th>Level</th>
+                  <th>Duration</th>
+                  <th>Fee</th>
+                  <th>Students</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="coursesTable">
+                <tr><td colspan="7" style="text-align: center;">Loading courses...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="dashboard-content" id="blogsPage" style="display: none;">
+        <div class="page-header">
+          <h1>Blog Management</h1>
+          <button class="btn btn-primary" onclick="showAddBlogModal()">+ New Post</button>
+        </div>
+        <div class="panel-card">
+          <div class="panel-body">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Title</th>
+                  <th>Author</th>
+                  <th>Category</th>
+                  <th>Views</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="blogsTable">
+                <tr><td colspan="6" style="text-align: center;">Loading blogs...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="dashboard-content" id="admissionsPage" style="display: none;">
+        <div class="page-header">
+          <h1>Admission Applications</h1>
+        </div>
+        <div class="tab-nav">
+          <button class="tab-btn active" data-filter="all">All</button>
+          <button class="tab-btn" data-filter="student">Students</button>
+          <button class="tab-btn" data-filter="teacher">Teachers</button>
+          <button class="tab-btn" data-filter="pending">Pending</button>
+        </div>
+        <div class="panel-card">
+          <div class="panel-body">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Applicant</th>
+                  <th>Type</th>
+                  <th>Contact</th>
+                  <th>Applied For</th>
+                  <th>Date</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="allAdmissionsTable">
+                <tr><td colspan="7" style="text-align: center;">Loading admissions...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="../js/main.js"></script>
+  <script>
+    // Check auth
+    if (!app.token || app.user?.role !== 'SUPER_ADMIN') {
+      window.location.href = '../index.html';
+    }
+
+    // Navigation
+    document.querySelectorAll('.nav-item[data-page]').forEach(item => {
+      item.addEventListener('click', () => {
+        document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
+        item.classList.add('active');
+        
+        const page = item.dataset.page;
+        document.querySelectorAll('.dashboard-content').forEach(p => p.style.display = 'none');
+        document.getElementById(page + 'Page').style.display = 'block';
+        
+        if (page === 'courses') loadCoursesTable();
+        if (page === 'blogs') loadBlogsTable();
+        if (page === 'admissions') loadAllAdmissions();
+      });
+    });
+
+    // Load dashboard stats
+    async function loadDashboardStats() {
+      try {
+        const response = await fetch(`${CONFIG.API_BASE_URL}/admin/dashboard`, {
+          headers: { 'Authorization': `Bearer ${app.token}` }
+        });
+        const data = await response.json();
+        
+        if (data.success) {
+          document.getElementById('totalStudents').textContent = data.stats.totalStudents || 0;
+          document.getElementById('totalTeachers').textContent = data.stats.totalTeachers || 0;
+          document.getElementById('pendingAdmissions').textContent = data.stats.pendingAdmissions || 0;
+        }
+      } catch (error) {
+        console.error('Error loading stats:', error);
+      }
+    }
+
+    // Load admissions
+    async function loadAdmissions() {
+      try {
+        const response = await fetch(`${CONFIG.API_BASE_URL}/admin/admissions`, {
+          headers: { 'Authorization': `Bearer ${app.token}` }
+        });
+        const data = await response.json();
+        
+        if (data.success) {
+          const tbody = document.getElementById('admissionsTable');
+          const pending = data.data.filter(a => a.status === 'pending').slice(0, 5);
+          
+          tbody.innerHTML = pending.length ? pending.map(a => `
+            <tr>
+              <td>${a.fullName || a.name}</td>
+              <td>${a.type}</td>
+              <td>${a.course?.title || 'N/A'}</td>
+              <td>${new Date(a.createdAt).toLocaleDateString()}</td>
+              <td><span class="status-badge ${a.status}">${a.status}</span></td>
+              <td>
+                <button class="action-btn approve" onclick="updateAdmission('${a.id}', 'approved')">Approve</button>
+                <button class="action-btn reject" onclick="updateAdmission('${a.id}', 'rejected')">Reject</button>
+              </td>
+            </tr>
+          `).join('') : '<tr><td colspan="6" style="text-align: center;">No pending admissions</td></tr>';
+        }
+      } catch (error) {
+        console.error('Error loading admissions:', error);
+      }
+    }
+
+    // Update admission status
+    async function updateAdmission(id, status) {
+      try {
+        const response = await fetch(`${CONFIG.API_BASE_URL}/admin/admissions/${id}`, {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${app.token}`
+          },
+          body: JSON.stringify({ status })
+        });
+        
+        const data = await response.json();
+        if (data.success) {
+          app.showToast('success', `Admission ${status} successfully`);
+          loadAdmissions();
+          loadDashboardStats();
+        }
+      } catch (error) {
+        app.showToast('error', 'Failed to update admission');
+      }
+    }
+
+    // Logout
+    function logout() {
+      app.logout();
+      window.location.href = '../index.html';
+    }
+
+    // Initialize
+    loadDashboardStats();
+    loadAdmissions();
+  </script>
+</body>
+</html>
